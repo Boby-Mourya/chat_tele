@@ -1,0 +1,41 @@
+"""Branding-specific schema boundary."""
+
+from northstar_api.modules.workspace.contracts import (
+    AuthBranding,
+    BrandAssets,
+    BrandColors,
+    BrandTypography,
+    BrandVersion,
+    DashboardAppearance,
+    DashboardSettings,
+    DashboardWidget,
+    DomainCreate,
+    DomainRecord,
+    DomainsSettings,
+    EmailBranding,
+    EmailTemplate,
+    ExtendedBranding,
+    PublishRequest,
+    RollbackRequest,
+    WidgetBranding,
+)
+
+__all__ = [
+    "AuthBranding",
+    "BrandAssets",
+    "BrandColors",
+    "BrandTypography",
+    "BrandVersion",
+    "DashboardAppearance",
+    "DashboardSettings",
+    "DashboardWidget",
+    "DomainCreate",
+    "DomainRecord",
+    "DomainsSettings",
+    "EmailBranding",
+    "EmailTemplate",
+    "ExtendedBranding",
+    "PublishRequest",
+    "RollbackRequest",
+    "WidgetBranding",
+]

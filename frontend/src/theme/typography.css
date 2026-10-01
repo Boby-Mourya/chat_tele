@@ -1,0 +1,17 @@
+body {
+  font-family: var(--brand-font, Inter, system-ui, sans-serif);
+  color: var(--brand-text, #111827);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--brand-heading-font, var(--brand-font, Inter, system-ui, sans-serif));
+}
+
+a {
+  text-decoration-color: color-mix(in srgb, var(--brand-link, currentColor) 45%, transparent);
+}

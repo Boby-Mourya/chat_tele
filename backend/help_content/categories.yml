@@ -1,0 +1,68 @@
+- slug: getting-started
+  title: Getting Started
+  description: Start with Northstar and reach your first successful setup.
+  icon: Rocket
+  sort_order: 10
+  is_active: true
+- slug: agents
+  title: Agents
+  description: Create, configure, duplicate, publish, and understand AI agents.
+  icon: Sparkles
+  sort_order: 20
+  is_active: true
+- slug: knowledge
+  title: Knowledge
+  description: Add sources, understand ingestion states, and improve grounded answers.
+  icon: BookOpen
+  sort_order: 30
+  is_active: true
+- slug: conversations
+  title: Conversations
+  description: Use the inbox, states, escalation, and human replies.
+  icon: MessagesSquare
+  sort_order: 40
+  is_active: true
+- slug: leads
+  title: Leads
+  description: Understand captured contacts, consent, and lead status.
+  icon: ContactRound
+  sort_order: 50
+  is_active: true
+- slug: analytics
+  title: Analytics
+  description: Interpret conversation volume, resolution, response time, satisfaction,
+    and channels.
+  icon: BarChart3
+  sort_order: 60
+  is_active: true
+- slug: integrations
+  title: Integrations
+  description: Connect and troubleshoot supported channels and integrations.
+  icon: PlugZap
+  sort_order: 70
+  is_active: true
+- slug: deploy
+  title: Deploy
+  description: Preview, install, and test agents across supported channels.
+  icon: Code2
+  sort_order: 80
+  is_active: true
+- slug: workspace
+  title: Workspace & Access
+  description: Manage workspace profile, team roles, API keys, billing, and branding.
+  icon: Settings2
+  sort_order: 90
+  is_active: true
+- slug: security
+  title: Security & Privacy
+  description: Understand domains, consent, masking, retention, rate limits, and credentials.
+  icon: ShieldCheck
+  sort_order: 100
+  is_active: true
+- slug: troubleshooting
+  title: Troubleshooting
+  description: Recover from common sign-in, knowledge, widget, WhatsApp, permission,
+    and analytics issues.
+  icon: LifeBuoy
+  sort_order: 110
+  is_active: true

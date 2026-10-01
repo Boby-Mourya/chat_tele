@@ -1,0 +1,7 @@
+# Exact historical false positives: deterministic test idempotency keys.
+c3a6907ae8b03a9e984850afcfc2df2c94a8da7f:services/api/tests/test_api.py:generic-api-key:135
+c3a6907ae8b03a9e984850afcfc2df2c94a8da7f:services/api/tests/test_api.py:generic-api-key:160
+c3a6907ae8b03a9e984850afcfc2df2c94a8da7f:services/api/tests/test_api.py:generic-api-key:211
+
+# Reviewed false positive: prose in the Lead/CRM implementation status document.
+5dc0c26f2c6014eff0d5d968270e32efbd6908ba:docs/lead-crm-implementation-status.md:generic-api-key:76

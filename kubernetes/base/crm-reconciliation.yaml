@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: northstar-crm-reconciliation, namespace: northstar}
+spec:
+  replicas: 1
+  selector: {matchLabels: {app: northstar-crm-reconciliation}}
+  template:
+    metadata: {labels: {app: northstar-crm-reconciliation, app.kubernetes.io/part-of: northstar}}
+    spec:
+      securityContext: {runAsNonRoot: true, runAsUser: 10001, runAsGroup: 10001}
+      containers:
+        - name: crm-reconciliation
+          image: northstar/api:replace-with-immutable-tag
+          command: [python, -m, northstar_api.workers.crm_reconciliation]
+          envFrom: [{configMapRef: {name: northstar-config}}, {secretRef: {name: northstar-secrets}}]
+          env: [{name: DATABASE_URL, valueFrom: {secretKeyRef: {name: northstar-secrets, key: WORKER_DATABASE_URL}}}]
+          resources: {requests: {cpu: 100m, memory: 256Mi}, limits: {cpu: "1", memory: 1Gi}}
+          readinessProbe:
+            exec:
+              command: [python, -m, northstar_api.workers.worker_process_probe, --expect, northstar_api.workers.crm_reconciliation]
+            initialDelaySeconds: 2
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 3
+          livenessProbe:
+            exec:
+              command: [python, -m, northstar_api.workers.worker_process_probe, --expect, northstar_api.workers.crm_reconciliation]
+            initialDelaySeconds: 10
+            periodSeconds: 20
+            timeoutSeconds: 3
+            failureThreshold: 3
+          securityContext: {allowPrivilegeEscalation: false, readOnlyRootFilesystem: true, capabilities: {drop: [ALL]}}
+          volumeMounts: [{name: tmp, mountPath: /tmp}]
+      volumes: [{name: tmp, emptyDir: {sizeLimit: 128Mi}}]

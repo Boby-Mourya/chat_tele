@@ -1,0 +1,188 @@
+/* Shared finishing rules. Layout belongs to the component stylesheets;
+   application colors and interaction states belong to the theme. */
+:is(.mm-shell, .login-page, .modal, .not-found) .button--primary {
+  color: var(--on-primary);
+}
+:is(.mm-shell, .login-page, .modal, .not-found) .button--primary:hover:not(:disabled) {
+  color: var(--on-primary);
+  background: var(--blue-hover);
+  border-color: var(--blue-hover);
+  box-shadow: none;
+}
+:is(.mm-shell, .login-page, .modal) .button--secondary:hover:not(:disabled) {
+  background: var(--blue-soft);
+  border-color: var(--ink);
+  box-shadow: none;
+}
+:is(.mm-shell, .login-page, .modal) .button--danger:hover:not(:disabled) {
+  background: var(--danger-hover);
+}
+:is(.mm-shell, .login-page, .modal) .button--ghost:hover:not(:disabled) {
+  color: var(--ink);
+  background: var(--academy-grey);
+}
+:is(.mm-shell, .login-page, .modal) .button:disabled {
+  cursor: not-allowed;
+  transform: none;
+}
+:is(.mm-shell, .login-page, .modal) .icon-button {
+  color: var(--muted);
+}
+:is(.mm-shell, .login-page, .modal) .icon-button:hover:not(:disabled) {
+  color: var(--ink);
+  background: var(--blue-soft);
+}
+:is(.mm-shell, .login-page, .modal) .danger-hover:hover:not(:disabled) {
+  color: var(--danger);
+  background: var(--danger-soft);
+}
+:is(.mm-shell, .login-page, .modal) :focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+/* A dark focus outline disappears against the navigation rail. */
+.mm-shell :is(.mm-sidebar, .mm-drawer) :focus-visible {
+  outline-color: #fff;
+  outline-offset: -3px;
+}
+:is(.mm-shell, .login-page) .switch-row input:focus-visible + .switch {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+:is(.mm-shell, .login-page, .modal) :is(input, textarea)::placeholder {
+  color: var(--muted-2);
+  opacity: 1;
+}
+:is(.mm-shell, .login-page, .modal) :is(input, textarea, select)[aria-invalid="true"] {
+  border-color: var(--danger);
+}
+.mm-shell :is(.heading-actions select, .table-pagination select, .conversation-lead-status select) {
+  min-height: 42px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-control);
+  background-color: var(--surface);
+  color: var(--ink);
+  padding: 9px 28px 9px 12px;
+  font-size: 13px;
+}
+.mm-shell .heading-actions { flex-wrap: wrap; align-items: center; }
+.mm-shell .heading-actions select { display: block; max-width: 100%; }
+.mm-shell :is(.badge--success, .catalog-notice--success) {
+  color: var(--success); background: var(--success-soft);
+}
+.mm-shell :is(.badge--warning, .inbox-update-status--error) {
+  color: var(--warning); background: var(--warning-soft);
+}
+.mm-shell :is(.badge--danger, .catalog-notice--error, .form-error) {
+  color: var(--danger); background: var(--danger-soft);
+}
+.mm-shell .badge--purple { color: var(--purple); background: var(--purple-soft); }
+.mm-shell :is(.education-conversation-label, .conversation-new-messages, .lead-column,
+  .thread-notice, .conversation-summary, .help-category-card__icon,
+  .help-support-card__icon, .help-search-hero, .help-ask-intro) {
+  color: var(--ink); background: var(--academy-grey); border-color: var(--line);
+}
+.mm-shell :is(.education-inbox-filters__heading, .education-inbox-filters__heading strong,
+  .conversation-lead-status__field > svg, .message-author, .conversation-summary p) {
+  color: var(--muted);
+}
+.mm-shell :is(.conversation-item__copy time, .message-author time, .visitor-panel dt,
+  .help-article-card__meta, .help-category-card__copy small, .help-support-card__email) {
+  color: var(--muted);
+}
+.mm-shell :is(.mini-avatar, .mini-avatar--visitor, .message-avatar--visitor) {
+  color: var(--ink); background: var(--blue-soft);
+}
+.mm-shell .inbox-message .message-avatar {
+  display: grid; place-items: center; flex: 0 0 30px;
+  width: 30px; height: 30px; border-radius: 9px;
+  color: var(--ink); background: var(--surface);
+}
+.mm-shell .inbox-message .message-avatar--visitor { background: var(--blue-soft); }
+.mm-shell .inbox-message .message-bubble { font-size: 13px; line-height: 1.65; overflow-wrap: anywhere; }
+.mm-shell .message-author { font-size: 11px; }
+.mm-shell .conversation-item__copy strong { font-size: 13px; }
+.mm-shell .conversation-item__copy > small { height: auto; font-size: 12px; line-height: 1.5; }
+.mm-shell .conversation-item__copy time { font-size: 11px; }
+.mm-shell .human-composer small { color: var(--muted); font-size: 11px; }
+.mm-shell .inbox-update-status:not(.inbox-update-status--error) {
+  background: var(--academy-grey); color: var(--muted);
+}
+.mm-shell .inbox-page :is(.conversation-items, .conversation-thread, .visitor-panel) {
+  scrollbar-color: var(--line-strong) var(--academy-grey);
+}
+.mm-shell .inbox-page :is(.conversation-items, .conversation-thread, .visitor-panel)::-webkit-scrollbar-thumb {
+  background: var(--line-strong); border-color: var(--academy-grey);
+}
+.mm-shell .inbox-page :is(.conversation-items, .conversation-thread, .visitor-panel)::-webkit-scrollbar-track {
+  background: var(--academy-grey);
+}
+.mm-shell :is(.crm-workflow-metrics .card > span, .crm-pipeline-step__icon) {
+  background: var(--surface); color: var(--ink);
+}
+.mm-shell :is(.crm-workflow-metrics strong, .workspace-panel__heading h3) {
+  font-family: var(--academy-heading);
+}
+.mm-shell .notification-center__badge { background: var(--danger); }
+.mm-shell .notification-center__item.is-unread { background: var(--academy-grey); }
+.modal-backdrop { background: #0c0b0b66; backdrop-filter: blur(3px); }
+.command-palette { font-family: var(--academy-font); box-shadow: var(--shadow-lg); }
+.toast { background: var(--surface); }
+
+/* Charts use the same palette as their legends; labels supply meaning too. */
+.mm-shell .analytics-chart-card { margin-bottom: 20px; }
+.mm-shell :is(.bar-pair i, .legend-dot--blue) { background: var(--chart-1); }
+.mm-shell :is(.bar-pair i:last-child, .legend-dot--mint) { background: var(--chart-2); }
+.mm-shell :is(.bar-y-labels, .bar-group > span) { font-size: 11px; color: var(--muted); }
+.mm-shell .bar-pair i { min-height: 0; }
+.mm-shell .bar-grid i { border-color: var(--line); }
+.mm-shell .analytics-stat > small.positive { color: var(--success); }
+.mm-shell .analytics-stat > small.negative { color: var(--danger); }
+.mm-shell .analytics-stat > small em { color: var(--muted); }
+.mm-shell .question-list strong { font-size: 13px; }
+.mm-shell .question-list small { font-size: 12px; }
+.mm-shell .question-rank { color: var(--muted); background: var(--surface); }
+.mm-shell .resolution-bar i { background: var(--chart-2); }
+.mm-shell .resolution-bar > span { background: var(--line); }
+.mm-shell .channel-legend strong, .mm-shell .channel-legend em { font-size: 12px; }
+.mm-shell .channel-color { background: var(--channel-color, var(--chart-1)); width: 10px; height: 10px; }
+.mm-shell .donut { background: var(--channel-gradient, var(--line)); flex-shrink: 0; }
+.mm-shell .donut::after { background: var(--academy-grey); }
+.mm-shell .donut small { font-size: 12px; }
+.mm-shell .health-insight { background: var(--academy-grey); border-color: var(--line); }
+.mm-shell .health-insight > span { color: var(--ink); background: var(--surface); }
+.mm-shell .health-insight p { font-size: 13px; }
+.mm-shell .analytics-empty { padding: 32px 20px; text-align: center; color: var(--muted); }
+.route-error { display: grid; justify-items: center; gap: 16px; padding: 64px 24px; text-align: center; }
+.route-error h2 { font-family: var(--academy-heading); font-size: 28px; }
+.route-error p { max-width: 440px; color: var(--muted); line-height: 1.6; }
+.route-error__actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+
+@media (max-width: 699px) {
+  .mm-shell .heading-actions { width: 100%; }
+  .mm-shell .heading-actions select { flex: 1; min-width: 140px; }
+  .mm-shell .donut-wrap { flex-wrap: wrap; gap: 24px; }
+  .mm-shell .bar-chart { overflow-x: auto; }
+  .mm-shell .bar-plot { min-width: 280px; }
+  .mm-shell .question-list > div { grid-template-columns: auto minmax(0, 1fr); }
+  .mm-shell .question-list > div > :last-child { grid-column: 2; }
+  .mm-shell .health-insight { flex-wrap: wrap; }
+  .mm-shell .health-insight > div { min-width: 180px; }
+  .mm-shell .health-insight .button { margin-left: auto; }
+  .mm-shell :is(.inbox-title, .conversation-detail__header) { gap: 10px; }
+  .mm-shell .conversation-detail__header h3 { overflow-wrap: anywhere; }
+  :is(.mm-shell, .login-page, .modal) :is(input, select, textarea) { font-size: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+@media (forced-colors: active) {
+  .mm-shell .card, .mm-shell .button, .mm-shell .badge { border: 1px solid CanvasText; }
+  .mm-shell .mm-nav-link.is-active { outline: 2px solid Highlight; }
+}

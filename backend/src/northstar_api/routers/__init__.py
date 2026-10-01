@@ -1,0 +1,158 @@
+# ruff: noqa: I001
+from fastapi import APIRouter, Depends
+
+# Load the legacy workspace router before the additive feature module. The
+# settings module reuses its scoped loader while the migration remains
+# non-destructive.
+from northstar_api.routers import workspace
+from northstar_api.modules.workspace.router import router as workspace_settings_router
+from northstar_api.routers import (
+    agents,
+    analytics,
+    auth,
+    billing,
+    bot_workflows,
+    channel_deliveries,
+    channel_health_history,
+    channel_operations,
+    channel_webhook_events,
+    channels,
+    telegram_connect,
+    chat,
+    conversations,
+    course_knowledge,
+    course_knowledge_artifacts,
+    course_knowledge_guard,
+    crm,
+    crm_dead_letters,
+    crm_delivery_attempts,
+    crm_health_history,
+    crm_oauth,
+    crm_one_click,
+    crm_operations,
+    crm_route_admin,
+    crm_schema,
+    crm_scoped,
+    crm_webhook_events,
+    crm_webhooks,
+    crm_workflow,
+    crm_workspace_settings,
+    crm_zoho_one_click,
+    education,
+    education_access_recovery,
+    education_access_requests,
+    education_activity,
+    education_batches,
+    education_catalog,
+    education_conversations,
+    education_enrollment_events,
+    education_enrollments,
+    education_lms_import,
+    education_sales_settings,
+    education_student_detail,
+    education_student_identities,
+    education_student_import,
+    education_students,
+    education_tutor,
+    education_upsell,
+    email_verification,
+    help,
+    integration_audit,
+    integrations,
+    knowledge,
+    lead_layout,
+    leads,
+    llm_connections,
+    mfa,
+    notifications,
+    onboarding,
+    organization_sessions,
+    password_reset,
+    platform_admin,
+    public_branding,
+    qualification,
+    slack_webhooks,
+    whatsapp,
+    whatsapp_accounts,
+    widget,
+    workspace_api_keys,
+    workspace_invitations,
+)
+from northstar_api.services.entitlement_guard import enforce_plan_entitlements
+
+api_router = APIRouter(dependencies=[Depends(enforce_plan_entitlements)])
+api_router.include_router(telegram_connect.router)
+api_router.include_router(auth.router)
+api_router.include_router(organization_sessions.router)
+api_router.include_router(onboarding.router)
+api_router.include_router(email_verification.router)
+api_router.include_router(password_reset.router)
+api_router.include_router(mfa.router)
+api_router.include_router(public_branding.router)
+api_router.include_router(agents.router)
+api_router.include_router(bot_workflows.router)
+api_router.include_router(education.router)
+api_router.include_router(course_knowledge.router)
+api_router.include_router(course_knowledge_artifacts.router)
+api_router.include_router(course_knowledge_guard.router)
+api_router.include_router(education_activity.router)
+api_router.include_router(education_batches.router)
+api_router.include_router(education_catalog.router)
+api_router.include_router(education_students.router)
+api_router.include_router(education_tutor.router)
+api_router.include_router(education_student_detail.router)
+api_router.include_router(education_student_identities.router)
+api_router.include_router(education_student_import.router)
+api_router.include_router(education_lms_import.router)
+api_router.include_router(education_enrollments.router)
+api_router.include_router(education_enrollment_events.router)
+api_router.include_router(education_access_recovery.router)
+api_router.include_router(education_access_requests.router)
+api_router.include_router(education_conversations.router)
+api_router.include_router(education_sales_settings.router)
+api_router.include_router(education_upsell.router)
+api_router.include_router(knowledge.router)
+api_router.include_router(conversations.router)
+api_router.include_router(lead_layout.router)
+api_router.include_router(leads.router)
+api_router.include_router(llm_connections.router)
+api_router.include_router(qualification.router)
+api_router.include_router(crm_scoped.router)
+api_router.include_router(crm_workspace_settings.router)
+api_router.include_router(crm_delivery_attempts.router)
+api_router.include_router(crm_dead_letters.router)
+api_router.include_router(crm_operations.router)
+api_router.include_router(crm_health_history.router)
+api_router.include_router(crm_webhook_events.router)
+api_router.include_router(crm_zoho_one_click.router)
+api_router.include_router(crm_oauth.router)
+api_router.include_router(crm_one_click.router)
+api_router.include_router(crm_workflow.router)
+api_router.include_router(crm.router)
+api_router.include_router(crm_route_admin.router)
+api_router.include_router(crm_schema.router)
+api_router.include_router(crm_webhooks.router)
+api_router.include_router(slack_webhooks.router)
+api_router.include_router(channel_operations.router)
+api_router.include_router(channel_deliveries.router)
+api_router.include_router(channel_health_history.router)
+api_router.include_router(channel_webhook_events.router)
+api_router.include_router(channels.router)
+api_router.include_router(analytics.router)
+api_router.include_router(integration_audit.router)
+api_router.include_router(integration_audit.audit_router)
+api_router.include_router(notifications.router)
+api_router.include_router(integrations.router)
+api_router.include_router(help.router)
+api_router.include_router(widget.router)
+api_router.include_router(whatsapp.router)
+api_router.include_router(chat.router)
+api_router.include_router(workspace_invitations.router)
+api_router.include_router(workspace.router)
+api_router.include_router(workspace.collection_router)
+api_router.include_router(workspace_invitations.public_router)
+api_router.include_router(workspace_api_keys.router)
+api_router.include_router(workspace_settings_router)
+api_router.include_router(billing.router)
+api_router.include_router(whatsapp_accounts.router)
+api_router.include_router(platform_admin.router)

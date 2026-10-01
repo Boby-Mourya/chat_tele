@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: northstar-config
+  namespace: northstar
+data:
+  APP_ENV: production
+  APP_HOST: 0.0.0.0
+  APP_PORT: "8000"
+  APP_API_PREFIX: /api/v1
+  APP_AUTO_CREATE_SCHEMA: "false"
+  APP_CORS_ORIGINS: '["https://app.example.com"]'
+  LOG_LEVEL: INFO
+  LOG_JSON: "true"
+  EMAIL_DELIVERY_MODE: smtp
+  EMAIL_FROM_ADDRESS: no-reply@example.com
+  EMAIL_FROM_NAME: Northstar
+  EMAIL_VERIFICATION_FRONTEND_URL: https://app.example.com/verify-email
+  EMAIL_VERIFICATION_TTL_HOURS: "24"
+  PASSWORD_RESET_FRONTEND_URL: https://app.example.com/reset-password
+  PASSWORD_RESET_TTL_MINUTES: "60"
+  WORKSPACE_INVITATION_FRONTEND_URL: https://app.example.com/workspace-invitation
+  WORKSPACE_INVITATION_TTL_DAYS: "7"
+  SMTP_HOST: smtp.example.com
+  SMTP_PORT: "587"
+  SMTP_STARTTLS: "true"
+  SMTP_SSL: "false"
+  SMTP_TIMEOUT_SECONDS: "10"
+  REQUIRE_NVIDIA: "true"
+  ALLOW_DETERMINISTIC_EMBEDDINGS: "false"
+  RATE_LIMIT_FAIL_OPEN: "false"
+  KAFKA_ENABLED: "true"
+  BACKGROUND_DISPATCH_ENABLED: "true"
+  KAFKA_BOOTSTRAP_SERVERS: kafka.example:9093
+  S3_ENDPOINT_URL: https://s3.example.com
+  S3_PUBLIC_ENDPOINT_URL: https://s3.example.com
+  S3_BUCKET: northstar-knowledge
+  S3_REGION: us-east-1
+  META_GRAPH_API_VERSION: v26.0

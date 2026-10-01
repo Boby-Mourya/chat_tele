@@ -1,0 +1,30 @@
+.wa-message-editor .deploy-panel__body{display:flex;flex-direction:column;gap:18px}
+.deploy-controls{border:0;padding:0;margin:12px 0 0;min-width:0}
+.wa-editor-validation{padding:12px;border-radius:10px;background:#fff0f0;color:#b42318;font-size:13px;margin:10px 0}
+.wa-message-editor .field{min-width:0;margin:0!important}
+.wa-message-editor textarea{min-height:190px;resize:vertical;line-height:1.65}
+.wa-format-toolbar{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 8px}
+.wa-format-toolbar button,.wa-structure-presets button{border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--text);padding:8px 10px;cursor:pointer}
+.wa-format-toolbar button:hover,.wa-structure-presets button:hover{background:var(--blue-soft);color:var(--blue)}
+.wa-format-toolbar svg{display:block;width:17px;height:17px}
+.wa-editor-note{color:var(--muted);font-size:12px;line-height:1.6;margin:0}
+.wa-editor-note code{font-size:12px}
+.wa-structure-presets{display:flex;flex-wrap:wrap;gap:8px}
+.wa-structure-presets button{font-size:12px}
+.wa-message-preview.channel-frame{display:flex;flex-direction:column;min-width:0;width:100%;max-width:430px;height:620px;overflow:hidden;border:1px solid var(--line);border-radius:24px;background:#efeae2;font-family:Arial,system-ui,sans-serif}
+.wa-message-preview.channel-frame--desktop{max-width:620px}
+.wa-message-preview>header{display:flex;gap:12px;align-items:center;padding:18px;background:#fff;flex:none}
+.wa-preview-avatar{display:grid;place-items:center;flex:none;width:40px;height:40px;border-radius:50%;background:#008069;color:#fff;font-weight:700}
+.wa-message-preview>header>div{display:flex;flex-direction:column;gap:4px;min-width:0}
+.wa-message-preview>header strong{overflow-wrap:anywhere;font-size:14px}
+.wa-message-preview>header small{font-size:11px;color:#64748b}
+.wa-preview-messages{padding:20px 16px;display:flex;flex-direction:column;gap:14px;min-height:0;overflow-y:auto;scrollbar-gutter:stable;flex:1;background-image:radial-gradient(#d7d0c6 .75px,transparent .75px);background-size:20px 20px}
+.wa-preview-day{align-self:center;padding:5px 10px;border-radius:6px;background:#fff;color:#64748b;font-size:10px}
+.wa-preview-bubble{align-self:flex-start;max-width:94%;padding:12px 14px;border-radius:0 12px 12px;background:#fff;color:#17212b;box-shadow:0 1px 1px #0000000d;font-size:13px;line-height:1.6;overflow-wrap:anywhere}
+.wa-preview-bubble--out{align-self:flex-end;background:#d9fdd3;border-radius:12px 0 12px 12px}
+.wa-formatted-text{white-space:pre-wrap;overflow-wrap:anywhere}
+.wa-text-quote{display:inline-block;border-left:3px solid #8696a0;padding-left:9px;color:#54656f}
+.wa-formatted-text code{font:12px/1.6 ui-monospace,monospace;background:transparent;color:inherit;white-space:pre-wrap}
+.wa-message-preview>footer{padding:15px;background:#fff;color:#64748b;text-align:center;font-size:11px;flex:none}
+.deploy-page--whatsapp .deploy-heading-actions{flex-wrap:wrap;justify-content:flex-end}
+@media(max-width:600px){.deploy-page--whatsapp .deploy-sidebar{flex-wrap:wrap;overflow:visible}.deploy-page--whatsapp .deploy-sidebar__heading,.deploy-page--whatsapp .deploy-channel-select{flex:1;min-width:150px}.deploy-page--whatsapp .deploy-editor{min-height:0}.deploy-page--whatsapp .deploy-heading-actions .button{width:auto;font-size:12px;padding:9px 13px}.wa-message-preview.channel-frame{height:560px}}

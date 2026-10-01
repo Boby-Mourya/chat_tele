@@ -1,0 +1,74 @@
+name: Course Knowledge Validation
+
+on:
+  push:
+    branches: [feature/course-aware-knowledge-20260917]
+    paths:
+      - '.github/workflows/course-knowledge-validation.yml'
+      - 'backend/**'
+      - 'frontend/**'
+      - 'compose.course-knowledge.yaml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: course-knowledge-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  backend:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+        with:
+          python-version: '3.12'
+      - uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d
+        with:
+          enable-cache: true
+          cache-dependency-glob: backend/uv.lock
+      - name: Install locked backend dependencies
+        run: uv sync --all-groups --frozen
+      - name: Check Python syntax
+        run: uv run python -m compileall -q src migrations tests/test_course_knowledge_policy.py tests/test_course_knowledge_api.py tests/test_course_knowledge_selection_api.py
+      - name: Verify a single migration head without changing a database
+        run: |
+          uv run python - <<'PY'
+          from alembic.config import Config
+          from alembic.script import ScriptDirectory
+          heads = ScriptDirectory.from_config(Config('alembic.ini')).get_heads()
+          assert heads == ['0046_course_study_receipts'], heads
+          print('Migration graph:', heads)
+          PY
+      - name: Run policy and real application API regressions
+        run: uv run pytest tests/test_course_knowledge_policy.py tests/test_course_knowledge_api.py tests/test_course_knowledge_selection_api.py -q
+      # This intentionally uses the complete application and its normal fixtures.
+      # No router is removed and no failed assertion is converted into a pass.
+
+  frontend:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - name: Install locked frontend dependencies
+        run: npm ci --workspaces=false
+      - name: Type-check and build the entire frontend
+        run: npm run build

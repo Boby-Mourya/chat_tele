@@ -1,0 +1,8 @@
+.whatsapp-account-form { padding: 18px; border: 1px solid var(--line); border-radius: 14px; background: #f8fbfe; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.whatsapp-account-form > h3, .whatsapp-account-form > p, .whatsapp-account-form > .whatsapp-manager__actions { grid-column: 1 / -1; }
+.whatsapp-account-form .field { min-width: 0; }
+.whatsapp-account-form input { width: 100%; }
+.whatsapp-manager .whatsapp-manager__actions { flex-wrap: wrap; justify-content: flex-start; gap: 8px; }
+.whatsapp-manager > ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.whatsapp-manager > ul > li { padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px; overflow-wrap: anywhere; }
+@media (max-width: 600px) { .whatsapp-account-form { padding: 12px; grid-template-columns: minmax(0, 1fr); } }

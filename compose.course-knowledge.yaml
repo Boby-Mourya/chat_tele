@@ -1,0 +1,10 @@
+# Additive worker; inherits the existing service-role database, broker, networks,
+# read-only filesystem and migration prerequisites. No model settings are changed.
+services:
+  course-index-dispatcher:
+    extends:
+      file: compose.yaml
+      service: job-dispatcher
+    command: ["python", "-m", "northstar_api.workers.course_knowledge_dispatcher"]
+    environment:
+      OTEL_SERVICE_NAME: northstar-course-index-dispatcher

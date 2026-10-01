@@ -1,0 +1,46 @@
+.integrations-hub { display: grid; gap: 24px; }
+.zoho-one-click { display: grid; gap: 22px; padding: 24px; overflow: hidden; }
+.zoho-one-click__header { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 16px; align-items: start; }
+.zoho-one-click__brand { width: 48px; height: 48px; border-radius: 15px; display: grid; place-items: center; font-weight: 800; letter-spacing: -.04em; color: #fff; background: linear-gradient(135deg, #ef4444, #f59e0b 42%, #2563eb 72%, #16a34a); box-shadow: 0 10px 28px rgba(37, 99, 235, .2); }
+.zoho-one-click__title { display: grid; gap: 5px; }
+.zoho-one-click__title small { color: var(--muted, #667085); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; }
+.zoho-one-click__title h2, .zoho-one-click__title p { margin: 0; }
+.zoho-one-click__title p { max-width: 920px; color: var(--muted, #667085); line-height: 1.55; }
+.zoho-one-click__loading, .zoho-one-click__empty { min-height: 100px; display: flex; align-items: center; justify-content: center; gap: 10px; color: var(--muted, #667085); }
+.zoho-one-click__notice, .zoho-one-click__error, .zoho-one-click__verified { display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; border-radius: 13px; }
+.zoho-one-click__notice { background: #fff8e7; color: #7a4b00; border: 1px solid #f3d08a; }
+.zoho-one-click__error { background: #fff0f0; color: #8a1f1f; border: 1px solid #fac5c5; }
+.zoho-one-click__verified { background: #ecfdf3; color: #17653a; border: 1px solid #a7e3c2; }
+.zoho-one-click__notice svg, .zoho-one-click__error svg, .zoho-one-click__verified svg { width: 20px; height: 20px; flex: 0 0 auto; margin-top: 1px; }
+.zoho-one-click__notice p, .zoho-one-click__verified p { margin: 3px 0 0; color: inherit; opacity: .9; }
+.zoho-one-click__flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; list-style: none; padding: 0; margin: 0; }
+.zoho-one-click__flow li { min-height: 102px; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 10px; align-items: start; padding: 14px; border: 1px solid var(--border, #e7eaf0); border-radius: 14px; background: var(--surface, #fff); }
+.zoho-one-click__flow li > span { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 10px; color: var(--muted, #667085); background: var(--surface-subtle, #f4f6f8); }
+.zoho-one-click__flow li > span svg { width: 17px; height: 17px; }
+.zoho-one-click__flow li > div { display: grid; gap: 4px; }
+.zoho-one-click__flow li small { color: var(--muted, #667085); line-height: 1.35; }
+.zoho-one-click__flow li.is-complete { border-color: #a7e3c2; background: #f4fff8; }
+.zoho-one-click__flow li.is-complete > span { color: #16804b; background: #dcfce7; }
+.zoho-one-click__details { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; overflow: hidden; border: 1px solid var(--border, #e7eaf0); border-radius: 14px; background: var(--border, #e7eaf0); }
+.zoho-one-click__details > div { min-width: 0; padding: 13px 15px; display: grid; gap: 4px; background: var(--surface, #fff); }
+.zoho-one-click__details small { color: var(--muted, #667085); }
+.zoho-one-click__details strong { overflow-wrap: anywhere; }
+.zoho-one-click__details .zoho-one-click__external { grid-column: 1 / -1; }
+.zoho-one-click__actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.zoho-one-click__record { display: inline-flex; align-items: center; gap: 6px; margin-left: auto; color: var(--muted, #667085); font-size: .82rem; }
+.zoho-one-click__record svg { width: 15px; }
+@media (max-width: 1000px) {
+  .zoho-one-click__flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .zoho-one-click__details { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .zoho-one-click { padding: 18px; }
+  .zoho-one-click__header { grid-template-columns: 1fr auto; }
+  .zoho-one-click__brand { display: none; }
+  .zoho-one-click__flow, .zoho-one-click__details { grid-template-columns: 1fr; }
+  .zoho-one-click__record { width: 100%; margin-left: 0; }
+}
+.integrations-hub__advanced { border: 1px solid var(--border, #e7eaf0); border-radius: 14px; background: var(--surface, #fff); }
+.integrations-hub__advanced > summary { cursor: pointer; display: flex; align-items: center; gap: 9px; padding: 15px 18px; font-weight: 650; }
+.integrations-hub__advanced > summary svg { width: 18px; color: var(--muted, #667085); }
+.integrations-hub__advanced-content { padding: 0 18px 18px; }

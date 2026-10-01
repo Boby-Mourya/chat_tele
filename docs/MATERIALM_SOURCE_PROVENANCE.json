@@ -1,0 +1,18 @@
+{
+  "source": "User-uploaded MaterialM Free Tailwind React Admin Template.zip",
+  "sha256": "fb50fc18ccfa6adbed457c9c244a4e4b28dd94203ece05634b6ad1f1fc663429",
+  "upstream": "WrapPixel MaterialM Free Tailwind React Admin Template",
+  "adapted_files": {
+    "src/css/theme/default-colors.css": "0ba5791df31d1853ca582767e0252f8bf78acb4243c6382052f39157dde2e390",
+    "src/layouts/full/FullLayout.tsx": "c136e4ac3dee0d4cdbad40627fb725e371fd165c5b794593cf33e2b60fd1af0e",
+    "src/layouts/full/sidebar/Sidebar.tsx": "d4709939bc7e45a49fbad729fd0123a62806b1485f840ac6dcde56ea7f2b0ded",
+    "src/layouts/full/sidebar/NavItems/index.tsx": "f113fe467abe1b33572eaa08f0b24efdfbb77fa0d040e0de238fcbfee0d9399a",
+    "src/layouts/full/header/Header.tsx": "5338f9ec9ed87635be1b98704bc8ef08640b93c9a3fbb29fbcfb77b1a34a0a92",
+    "src/css/globals.css": "debe52779009d31bf14d1285b7b4eba1d61a7a47f644ee787f5e3833d454b274",
+    "src/components/shared/CardBox.tsx": "0622b2cde024311705460e799ae199a02c4450633b4c73d9c225dcb14138ec23",
+    "src/views/auth/login/Login.tsx": "5f478d533634affe3a0f7f00d83dc91791165bc48597922a5b98c0179b89d0d1",
+    "src/views/auth/register/Register.tsx": "6062a08f465b9b47cf40af4ddf491886a3b2007a7d788e1cdcd66a60ed012d46",
+    "src/views/dashboards/Dashboard.tsx": "d41257e2a320ec4865ee4c05a6729c6ad7f271aa11893fd1ae1eb4a8c8f1cee4",
+    "src/css/layouts/container.css": "7f21b056a0fcab66527e434f21bfd4a46f43f2c77d1ff4d2c87aa58c593c5777"
+  }
+}

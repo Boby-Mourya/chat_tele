@@ -1,0 +1,32 @@
+name: Workspace source evidence
+
+on:
+  push:
+    branches: [feature/workspace-access-whitelabel-20260917]
+    paths: [.github/workflows/workspace-source-evidence.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Archive committed source only
+        run: |
+          git archive --format=tar --output="$RUNNER_TEMP/workspace-source.tar" HEAD
+          git rev-parse HEAD > "$RUNNER_TEMP/workspace-source-commit.txt"
+          sha256sum "$RUNNER_TEMP/workspace-source.tar"
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: workspace-source-evidence
+          path: |
+            ${{ runner.temp }}/workspace-source.tar
+            ${{ runner.temp }}/workspace-source-commit.txt
+          retention-days: 1
+          if-no-files-found: error

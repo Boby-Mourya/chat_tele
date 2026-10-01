@@ -1,0 +1,39 @@
+name: Audit progress registry
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  registry:
+    name: Progress accounting (not release qualification)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # Same pinned checkout as CI
+        with: {persist-credentials: false}
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # Same pinned setup as CI
+        with: {python-version: "3.12"}
+      - name: Test progress accounting
+        run: python scripts/test_implementation_progress.py -v
+      - name: Reject stale generated progress
+        run: python scripts/implementation_progress.py --check docs/production-implementation-progress.md --json
+      - name: Publish exact-SHA progress summary
+        run: |
+          python scripts/implementation_progress.py --sha "$GITHUB_SHA" > audit-progress.md
+          python scripts/implementation_progress.py --sha "$GITHUB_SHA" --json > audit-progress.json
+          cat audit-progress.md >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # Same pinned upload as CI
+        with:
+          name: audit-progress-${{ github.sha }}
+          path: |
+            audit-progress.md
+            audit-progress.json
+            docs/production-implementation-register.json
+          if-no-files-found: error
+          retention-days: 14

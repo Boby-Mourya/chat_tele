@@ -1,0 +1,25 @@
+.education-knowledge-scope-card { display: grid; gap: 16px; }
+.education-knowledge-scope-card__heading { display: flex; gap: 12px; align-items: flex-start; }
+.education-knowledge-scope-card__heading > span { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: var(--surface-subtle, #f5f3ff); color: var(--brand, #6d5dfc); flex: 0 0 auto; }
+.education-knowledge-scope-card__heading svg { width: 20px; height: 20px; }
+.education-knowledge-scope-card__heading h3 { margin: 0; }
+.education-knowledge-scope-card__heading p { margin: 4px 0 0; color: var(--text-muted, #667085); }
+.education-knowledge-scope-card__notice { padding: 10px 12px; border-radius: 10px; background: #fff8e6; color: #805b10; font-size: 13px; }
+.education-knowledge-scope-list { display: grid; gap: 8px; }
+.education-knowledge-scope-row { display: grid; grid-template-columns: minmax(180px, 1fr) minmax(220px, 1.5fr) auto; gap: 12px; align-items: center; padding: 12px; border: 1px solid var(--border, #e5e7eb); border-radius: 12px; }
+.education-knowledge-scope-row__source { min-width: 0; display: grid; gap: 3px; }
+.education-knowledge-scope-row__source strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.education-knowledge-scope-row__source small { color: var(--text-muted, #667085); text-transform: capitalize; }
+.education-knowledge-scope-row__bindings { display: flex; flex-wrap: wrap; gap: 6px; }
+.education-knowledge-scope-editor { display: grid; gap: 16px; }
+.education-knowledge-scope-editor__picker { display: grid; grid-template-columns: 1fr 1fr auto; align-items: end; gap: 10px; }
+.education-knowledge-scope-editor__selected { display: grid; gap: 8px; }
+.education-knowledge-scope-editor__selected > div { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 12px; border: 1px solid var(--border, #e5e7eb); border-radius: 10px; }
+.education-knowledge-scope-editor__selected button { border: 0; background: transparent; color: #b42318; cursor: pointer; padding: 4px; display: grid; place-items: center; }
+.education-knowledge-scope-editor__selected button svg { width: 16px; height: 16px; }
+.education-knowledge-scope-editor__selected p { margin: 0; color: var(--text-muted, #667085); }
+@media (max-width: 820px) {
+  .education-knowledge-scope-row { grid-template-columns: 1fr; }
+  .education-knowledge-scope-row .button { justify-self: start; }
+  .education-knowledge-scope-editor__picker { grid-template-columns: 1fr; }
+}

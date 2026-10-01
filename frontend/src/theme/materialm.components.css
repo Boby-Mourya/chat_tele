@@ -1,0 +1,298 @@
+/* MaterialM's uploaded CardBox, globals.css, NavItems and auth layout, adapted
+   to Northstar's live components. Loaded after legacy page styles deliberately. */
+.mm-shell, .login-page {
+  font-family: 'Inter Variable', Inter, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  --line-strong: var(--m-color-border);
+  --mint: #2ea95c;
+  --danger: #d9577c;
+  --warning: #a78000;
+}
+.mm-shell .brand, .login-page .brand {
+  font-family: 'Inter Variable', Inter, sans-serif;
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+.mm-shell .brand-mark, .login-page .brand-mark { border-radius: 50%; box-shadow: none; }
+.mm-shell .mm-content > .page, .mm-shell .mm-education {
+  width: 100%; max-width: 1200px; margin-inline: auto; padding: 30px;
+}
+.mm-shell .mm-education__content > .page { padding: 0; }
+.mm-shell .page-heading { margin-bottom: 30px; }
+.mm-shell .page-heading h2 { font-size: 24px; line-height: 1.35; font-weight: 600; letter-spacing: -.5px; }
+.mm-shell .page-heading p { font-size: 14px; line-height: 1.6; }
+.mm-shell .page-kicker { font-size: 12px; text-transform: none; font-weight: 500; letter-spacing: 0; }
+.mm-shell .card { border: 0; border-radius: 12px; }
+.mm-shell .card-heading h3 { font-size: 18px; font-weight: 600; letter-spacing: -.3px; }
+.mm-shell .card-heading p { font-size: 14px; line-height: 1.5; }
+.mm-shell .card-heading > a { font-size: 12px; font-weight: 500; white-space: nowrap; }
+.mm-shell .card-heading { align-items: flex-start; flex-wrap: wrap; }
+.mm-shell .button, .login-page .button { border-radius: 999px; font-weight: 500; box-shadow: none; padding-inline: 20px; }
+.mm-shell .button--icon { padding: 0; }
+.mm-shell .button--primary, .login-page .button--primary { background: var(--blue); }
+.mm-shell .button--primary:hover, .login-page .button--primary:hover { background: var(--blue-hover); box-shadow: none; }
+.mm-shell .button--secondary { border-color: var(--line); color: var(--ink); }
+.mm-shell .field > label, .login-page .field > label { font-size: 14px; font-weight: 500; }
+.mm-shell .field input, .mm-shell .field select, .mm-shell .field textarea,
+.login-page .field input { border-color: var(--line); border-radius: 6px; font-size: 14px; }
+.mm-shell .field input:focus, .mm-shell .field select:focus, .mm-shell .field textarea:focus,
+.login-page .field input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px color-mix(in srgb, var(--blue) 15%, transparent); }
+.mm-shell .badge { border: 0; padding: 5px 10px; font-size: 12px; font-weight: 500; }
+.mm-shell .badge--brand { color: #0077bc; background: var(--blue-soft); }
+.mm-shell .badge--success { color: #237c44; background: var(--m-color-lightsuccess); }
+.mm-shell .badge--danger { color: #b23c60; background: #ff669220; }
+.mm-shell .badge--warning { color: #856600; background: var(--m-color-lightwarning); }
+.mm-shell .modal { border-radius: 12px; }
+.mm-shell .modal__header h2 { font-size: 20px; font-weight: 600; }
+.mm-shell .modal__footer { background: white; }
+.mm-shell .modal__footer:has(> .catalog-notice) { flex-wrap: wrap; }
+.mm-shell .mm-nav-link { font-size: 15px; }
+.mm-shell .mm-nav-link svg { width: 18px; height: 18px; flex-basis: 18px; stroke-width: 1.7; }
+.mm-shell .mm-nav-link:hover { background: var(--blue-soft); }
+.mm-shell--compact .mm-sidebar__navigation { padding-inline: 12px; }
+.mm-shell .mm-topbar { min-height: 80px; border-bottom: 0; padding-inline: 30px; }
+.mm-shell .workspace-switcher__button { background: transparent; border-color: var(--line); border-radius: 999px; }
+.mm-shell .workspace-switcher__mark { border-radius: 50%; }
+.mm-shell .account-button { border: 0; }
+.mm-shell .mm-education__nav, .mm-shell .mm-module-card, .mm-shell .mm-welcome,
+.mm-shell .mm-learning-boundary { border-radius: 12px; }
+.mm-shell .mm-module-card { padding: 30px; border: 0; }
+.mm-shell .mm-module-grid, .mm-shell .mm-education-home { gap: 30px; }
+.mm-shell .mm-welcome h2 { font-size: 28px; font-weight: 600; }
+.mm-shell .mm-module-card h3 { font-size: 18px; font-weight: 600; }
+.mm-shell .mm-module-card p { font-size: 14px; }
+
+/* Template dashboard: an eight-column report beside four-column summaries. */
+.mm-dashboard-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 30px; }
+.mm-shell .mm-dashboard-report { grid-column: span 8; padding: 30px; min-width: 0; }
+.mm-dashboard-stats { grid-column: span 4; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.mm-shell .mm-dashboard-stats .stat-card { padding: 22px; min-height: 175px; }
+.mm-shell .stat-card__icon { position: static; border-radius: 50%; width: 38px; height: 38px; margin-bottom: 16px; }
+.mm-shell .stat-card__icon--blue { background: var(--blue-soft); color: var(--blue); }
+.mm-shell .stat-card__icon--green { background: var(--m-color-lightsecondary); color: #139c97; }
+.mm-shell .stat-card__icon--purple { background: #ff669220; color: #d9577c; }
+.mm-shell .stat-card__icon--orange { background: var(--m-color-lightwarning); color: #a78000; }
+.mm-shell .stat-card > span { padding: 0; font-size: 13px; font-weight: 400; }
+.mm-shell .stat-card > strong { font-size: 26px; line-height: 1.3; font-weight: 600; margin-top: 6px; }
+.mm-shell .stat-card > small { margin-top: 10px; font-size: 11px; color: var(--muted); }
+.mm-shell .mm-dashboard-agents { grid-column: span 8; margin: 0; padding: 30px; min-width: 0; }
+.mm-shell .mm-dashboard-inbox { grid-column: span 4; padding: 30px; min-width: 0; }
+.mm-shell .mm-dashboard-agents .agent-row { grid-template-columns: auto minmax(0, 1fr) 85px 80px auto; gap: 14px; padding-block: 18px; }
+.mm-shell .mm-dashboard-agents .agent-row__status { display: none; }
+.mm-shell .agent-row strong, .mm-shell .attention-item strong { font-size: 14px; font-weight: 500; }
+.mm-shell .agent-row small, .mm-shell .attention-item small { font-size: 12px; }
+.mm-shell .attention-item { flex-wrap: wrap; }
+.mm-shell .attention-item > span:nth-child(2) { min-width: 0; }
+.mm-shell .attention-meta { margin-left: auto; }
+.mm-shell .tip-banner { margin-top: 30px; border: 0; border-radius: 12px; padding: 24px 30px; background: var(--m-color-lightsecondary); }
+.mm-shell .tip-banner strong { font-size: 15px; font-weight: 600; }
+.mm-shell .tip-banner p { font-size: 13px; }
+.mm-shell .overview-chart { height: 250px; margin-top: 30px; }
+.mm-shell .chart-labels { font-size: 11px; }
+.mm-shell .chart-legend { font-size: 13px; margin-top: 20px; }
+.mm-shell .chart-legend strong { font-size: 13px; font-weight: 500; }
+.mm-chart-line { stroke: var(--blue); }
+.mm-chart-fill { stop-color: var(--blue); }
+.mm-shell .legend-dot--blue { background: var(--blue); }
+.mm-chart-summary { display: flex; gap: 10px; align-items: baseline; margin-top: 26px; }
+.mm-chart-summary strong { font-size: 30px; font-weight: 600; letter-spacing: -1px; }
+.mm-chart-summary span { color: var(--muted); font-size: 13px; }
+.mm-shell .card-heading select { height: 38px; font-size: 12px; border-radius: 6px; }
+.mm-shell .table-wrap { overflow-x: auto; }
+.mm-shell .integrations-hub { grid-template-columns: minmax(0, 1fr); gap: 30px; }
+.mm-shell .integrations-hub__advanced { min-width: 0; border-radius: 12px; }
+.mm-shell .integrations-hub__advanced-content { min-width: 0; padding: 0 24px 24px; }
+.mm-shell .integrations-hub__advanced-content .page { padding: 24px 0 0; }
+.mm-shell .integration-card { min-width: 0; }
+.mm-shell .integration-card__copy { min-width: 0; overflow-wrap: anywhere; }
+.mm-shell .integration-card__copy > span { flex-wrap: wrap; }
+.mm-shell .integration-toolbar { flex-wrap: wrap; }
+.mm-shell .integration-toolbar > input, .mm-shell .integration-toolbar > select {
+  flex: 1 1 180px; min-width: 0; max-width: 100%; min-height: 42px;
+  padding: 10px 12px; border: 1px solid var(--line); border-radius: 6px;
+  background: white; color: var(--ink); font-size: 14px;
+}
+.mm-shell .category-tabs { flex-wrap: wrap; }
+.mm-shell .agent-card__top { flex-wrap: wrap; }
+.mm-shell .agent-cards, .mm-shell .integration-grid { gap: 30px; }
+.mm-shell .agent-card, .mm-shell .integration-card { padding: 24px; }
+.mm-shell .agent-card h3, .mm-shell .integration-card__copy h3 { font-size: 18px; font-weight: 600; }
+.mm-shell .agent-card p, .mm-shell .integration-card__copy p { font-size: 14px; height: auto; min-height: 42px; }
+.mm-shell .agent-card__stats small, .mm-shell .agent-card__footer { font-size: 11px; }
+.mm-shell .agent-card__stats strong { font-size: 16px; font-weight: 600; }
+.mm-shell table th { font-size: 13px; font-weight: 600; }
+.mm-shell table td { font-size: 13px; }
+
+/* Uploaded login/register: centered white card on the pastel gradient. */
+.login-page {
+  --blue: var(--m-color-primary); --blue-hover: var(--m-color-primary-emphasis);
+  --line: var(--m-color-border); --ink: var(--m-color-dark); --muted: #64748b;
+  display: flex; min-height: 100vh; min-height: 100dvh; align-items: center;
+  justify-content: center; padding: 32px 16px; color: var(--ink);
+  background: linear-gradient(45deg, rgb(238 119 82 / .2), rgb(231 60 126 / .2), rgb(35 166 213 / .2), rgb(35 213 171 / .2));
+}
+.login-page .login-panel { width: 420px; min-width: 0; max-width: 100%; grid-template-columns: minmax(0, 1fr); padding: 30px; border-radius: 12px; background: white; box-shadow: 0 2px 4px -1px rgb(175 182 201 / .2); }
+.login-page .login-panel__inner { width: 100%; min-width: 0; padding: 0; }
+.login-page .button { max-width: 100%; white-space: normal; padding-block: 10px; }
+.login-page .button svg { flex-shrink: 0; }
+.login-page .verification-card > div { min-width: 0; }
+.login-page .brand { display: flex; justify-content: center; }
+.login-page .login-heading { margin: 24px 0; text-align: center; }
+.login-page .login-heading h1 { font-size: 22px; font-weight: 600; letter-spacing: -.5px; margin: 0; }
+.login-page .login-heading p { font-size: 14px; line-height: 1.6; margin-top: 8px; }
+.login-page .eyebrow-pill, .login-page .login-story { display: none; }
+.login-page .login-form { gap: 20px; }
+.login-page .login-form .button { min-height: 44px; font-size: 14px; }
+.login-page .login-options { gap: 12px; flex-wrap: wrap; }
+.login-page .signup-copy { font-size: 13px; line-height: 1.6; }
+.login-page .login-legal { margin-top: 24px; line-height: 1.6; }
+.login-page .signup-panel { width: 540px; }
+
+@media (min-width: 1280px) and (max-width: 1500px) {
+  .mm-dashboard-stats { grid-template-columns: minmax(0, 1fr); gap: 15px; }
+  .mm-shell .mm-dashboard-stats .stat-card { min-height: 0; display: grid; grid-template-columns: 40px 1fr auto; gap: 2px 12px; padding: 18px; }
+  .mm-shell .mm-dashboard-stats .stat-card__icon { grid-row: span 2; margin: 0; align-self: center; }
+  .mm-shell .mm-dashboard-stats .stat-card > strong { grid-column: 3; grid-row: 1 / span 2; align-self: center; margin: 0; font-size: 24px; }
+  .mm-shell .mm-dashboard-stats .stat-card > small { grid-column: 2; margin: 0; font-size: 10px; }
+}
+@media (max-width: 1099px) {
+  .mm-shell .agent-cards--list .agent-card { display: block; }
+  .mm-shell .mm-dashboard-report, .mm-shell .mm-dashboard-agents { grid-column: span 12; }
+  .mm-dashboard-stats { grid-column: span 12; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .mm-shell .mm-dashboard-inbox { grid-column: span 12; }
+}
+@media (max-width: 699px) {
+  .mm-shell .mm-content > .page, .mm-shell .mm-education { padding: 24px 16px; }
+  .mm-shell .mm-education__content > .page { padding: 0; }
+  .mm-shell .mm-topbar { min-height: 72px; padding: 10px 12px; }
+  .mm-shell .mm-topbar__left { flex: 1; }
+  .mm-shell .workspace-switcher { min-width: 0; }
+  .mm-shell .workspace-switcher__button { width: min(140px, 30vw); }
+  .mm-shell .mm-search { background: transparent; }
+  .mm-shell .mm-search kbd { display: none; }
+  .mm-shell .mm-page-title { display: none; }
+  .mm-shell .page-heading--split { flex-wrap: wrap; gap: 16px; }
+  .mm-shell .page-heading--split > a .button, .mm-shell .page-heading--split > .button { width: auto; font-size: 13px; padding-inline: 16px; }
+  .mm-shell .page-heading h2 { font-size: 22px; }
+  .mm-dashboard-grid, .mm-shell .mm-module-grid, .mm-shell .mm-education-home { gap: 20px; }
+  .mm-dashboard-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .mm-shell .mm-dashboard-stats .stat-card { padding: 20px; }
+  .mm-shell .mm-dashboard-report, .mm-shell .mm-dashboard-agents, .mm-shell .mm-dashboard-inbox { padding: 22px; }
+  .mm-shell .mm-dashboard-agents .agent-row { grid-template-columns: auto minmax(0, 1fr) auto; }
+  .mm-shell .mm-dashboard-agents .agent-row__metric { display: none; }
+  .mm-shell .overview-chart { height: 200px; }
+  .mm-shell .card-heading h3 { font-size: 17px; }
+  .mm-shell .tip-banner { padding: 22px; }
+  .mm-shell .integrations-hub__advanced-content { padding: 0 16px 16px; }
+  .mm-shell .two-fields { grid-template-columns: minmax(0, 1fr); }
+  .mm-shell .bar-chart { grid-template-columns: 28px minmax(0, 1fr); }
+  .mm-shell .bar-plot { min-width: 0; gap: 4px; padding-inline: 2px; }
+  .mm-shell .bar-group { min-width: 0; }
+  .mm-shell .analytics-lower-grid { grid-template-columns: minmax(0, 1fr); }
+  .mm-shell .question-list > div { grid-template-columns: auto minmax(0, 1fr); }
+  .mm-shell .resolution-bar { grid-column: 2; }
+  .mm-shell .donut-wrap { flex-wrap: wrap; }
+  .login-page .login-panel { padding: 24px; }
+}
+/* Integration catalogue follows the MaterialM card and spacing system. */
+.mm-shell .integration-catalog { display: flex; flex-direction: column; gap: 28px; }
+.catalog-heading, .catalog-section-heading { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.catalog-heading h1 { font-size: 26px; margin: 0 0 8px; }
+.catalog-heading p, .catalog-section-heading p { color: var(--text-secondary, #6b7d96); margin: 0; line-height: 1.6; }
+.mm-shell .catalog-toolbar { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; padding: 18px; }
+.catalog-filters { display: flex; flex-wrap: wrap; gap: 4px; }
+.catalog-filters button { border: 0; background: transparent; color: #60738e; border-radius: 12px; padding: 14px 16px; cursor: pointer; font: inherit; font-size: 13px; font-weight: 500; }
+.catalog-filters button.is-active { background: #eaf3ff; color: #008cdd; }
+.catalog-filters button:focus-visible { outline: 2px solid #008cdd; outline-offset: 2px; }
+.catalog-search { display: flex; align-items: center; gap: 10px; margin-left: auto; color: #8192ac; border: 1px solid #e0e7ef; border-radius: 12px; padding: 0 14px; min-width: 200px; flex: 1 1 230px; max-width: 320px; }
+.mm-shell .catalog-search input { width: 100%; min-width: 0; border: 0; background: transparent; padding: 13px 0; outline: none; box-shadow: none; }
+.catalog-search:focus-within { outline: 2px solid #00a1ff; outline-offset: 2px; }
+.catalog-group { display: flex; flex-direction: column; gap: 20px; }
+.catalog-section-heading h2 { font-size: 18px; margin: 0 0 6px; }
+.catalog-section-heading p { font-size: 13px; }
+.catalog-section-heading > span { color: #71829a; font-size: 12px; white-space: nowrap; }
+.catalog-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.mm-shell .catalog-card { display: flex; flex-direction: column; align-items: stretch; padding: 26px; min-width: 0; border: 1px solid transparent; box-shadow: 0 2px 6px #172b4d08; transition: border-color .15s, box-shadow .15s; }
+.mm-shell .catalog-card:hover { border-color: #dceaf5; box-shadow: 0 5px 16px #172b4d0b; }
+.catalog-card__top { display: flex; align-items: flex-start; gap: 16px; min-height: 62px; }
+.catalog-card__top > div { min-width: 0; }
+.catalog-card h3 { font-size: 18px; line-height: 1.4; margin: 2px 0 8px; overflow-wrap: anywhere; }
+.catalog-card__category { font-size: 12px; color: #7c8ba1; }
+.catalog-icon { display: inline-flex; align-items: center; justify-content: center; width: 54px; height: 54px; flex: 0 0 54px; color: #00a1ff; background: #f7f9fc; border: 1px solid #e0e7ef; border-radius: 16px; }
+.catalog-icon--zoho { color: #d97818; background: #fff5e9; border-color: #ffe7c8; }
+.catalog-icon--hubspot { color: #ed744c; background: #fff2ed; border-color: #ffe3d7; }
+.catalog-icon--dynamics { color: #7259d8; background: #f3efff; border-color: #e7dfff; }
+.catalog-icon--pipedrive, .catalog-icon--freshsales { color: #179877; background: #eaf8f2; border-color: #d6eee5; }
+.catalog-card > p { color: #6c7e96; font-size: 14px; line-height: 1.75; margin: 18px 0 24px; flex: 1; }
+.catalog-card__footer { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: auto; }
+.catalog-card__footer .button { min-width: 108px; }
+.catalog-recommended { color: #7e8da2; font-size: 11px; }
+.catalog-card .badge { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; }
+.catalog-notice { padding: 14px 16px; background: #eef5ff; color: #415876; border: 1px solid #dce8f6; border-radius: 12px; font-size: 13px; line-height: 1.7; overflow-wrap: anywhere; }
+.catalog-notice--error { background: #fff2ef; border-color: #ffd8cf; color: #a43c29; }
+.catalog-notice--success { display: flex; align-items: flex-start; gap: 10px; background: #ecf8f1; border-color: #ceebdd; color: #207c57; }
+.catalog-notice--success > svg { flex-shrink: 0; margin-top: 2px; }
+.catalog-loading { margin: 0; font-size: 13px; color: #71829a; }
+.mm-shell .catalog-empty { text-align: center; padding: 48px 24px; }
+.catalog-back { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; width: fit-content; }
+.connection-setup { display: flex; flex-direction: column; gap: 18px; }
+.connection-steps { list-style: none; padding: 0; margin: 0 0 4px; display: flex; justify-content: space-between; gap: 10px; }
+.connection-steps li { display: flex; align-items: center; gap: 7px; color: #8491a3; font-size: 12px; }
+.connection-steps li span { border-radius: 50%; width: 25px; height: 25px; display: grid; place-items: center; background: #f0f3f7; flex-shrink: 0; }
+.connection-steps li.is-current { color: #008edf; }
+.connection-steps li.is-current span { background: #e3f4ff; }
+.connection-form, .connection-form fieldset, .connection-manage, .connection-app-fields { display: flex; flex-direction: column; gap: 18px; }
+.connection-form fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+.connection-form .field, .connection-manage .field { margin: 0; }
+.connection-app-fields { padding: 20px; border-radius: 12px; border: 1px solid #e0e7ef; background: #fafcfe; }
+.connection-app-fields h3, .connection-app-fields p { margin: 0; }
+.connection-app-fields h3 { font-size: 15px; }
+.connection-app-fields p { font-size: 13px; color: #6b7d96; line-height: 1.7; }
+.connection-checkbox { display: flex; align-items: center; gap: 9px; font-size: 13px; }
+.mm-shell .connection-checkbox input { width: 16px; height: 16px; }
+.connection-security { display: flex; align-items: flex-start; gap: 8px; color: #71829a; font-size: 12px; line-height: 1.6; margin: 0; }
+.connection-security svg { flex-shrink: 0; margin-top: 2px; }
+.connection-details { display: grid; grid-template-columns: 1fr 2fr; gap: 12px; font-size: 14px; padding: 16px; background: #f6f9fc; border-radius: 12px; overflow-wrap: anywhere; }
+.connection-details span { color: #71829a; }
+.connection-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+@media (max-width: 1000px) { .catalog-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 620px) {
+  .catalog-grid { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .catalog-heading { align-items: flex-start; flex-direction: column; }
+  .catalog-section-heading > span { display: none; }
+  .catalog-search { max-width: none; margin-left: 0; }
+  .catalog-filters { width: 100%; }
+  .catalog-filters button { padding: 12px 10px; }
+  .connection-steps li { font-size: 10px; gap: 4px; }
+  .connection-app-fields { padding: 14px; }
+}
+
+/* CRM forms use the same spacing and full-width controls as the integration catalogue. */
+.mm-shell .crm-management-panel { display: flex; flex-direction: column; gap: 24px; min-width: 0; }
+.crm-management-panel .integration-toolbar { margin: 0; flex-wrap: wrap; justify-content: flex-start; }
+.crm-management-panel .integration-toolbar > label { display: flex; flex-direction: column; gap: 8px; flex: 1 1 240px; min-width: 0; }
+.crm-management-panel .integration-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.mm-shell .crm-management-panel .integration-card { display: flex; flex-direction: column; min-width: 0; padding: 24px; }
+.crm-management-panel .integration-card__copy { display: flex; flex-direction: column; gap: 14px; min-width: 0; width: 100%; }
+.crm-management-panel .integration-card__copy > span { flex-wrap: wrap; }
+.crm-management-panel .integration-card__copy h3 { font-size: 17px; }
+.crm-management-panel .integration-card__copy p { margin: 0; font-size: 14px; line-height: 1.6; overflow-wrap: anywhere; }
+.crm-management-panel .integration-card__copy small { overflow-wrap: anywhere; }
+.crm-management-panel .integration-card__copy > label { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; }
+.crm-management-panel .integration-card__copy input[type="checkbox"] { flex: 0 0 18px; width: 18px; height: 18px; margin-top: 3px; }
+.crm-management-panel .integration-card__copy > .button { align-self: flex-start; }
+.crm-management-panel textarea { min-width: 0; width: 100%; resize: vertical; }
+.crm-management-panel select,
+.crm-management-panel input:not([type="checkbox"]),
+.crm-management-panel textarea { box-sizing: border-box; width: 100%; min-width: 0; padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px; background: #fff; color: var(--ink); font: inherit; font-size: 14px; }
+.crm-management-panel :is(select, input, textarea):focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+.crm-management-panel > .section-heading,
+.crm-management-panel > .integration-toolbar { padding: 0 24px; }
+.crm-management-panel > .section-heading { padding-top: 24px; }
+@media (max-width: 780px) {
+  .crm-management-panel .integration-grid { grid-template-columns: minmax(0, 1fr); }
+  .mm-shell .crm-management-panel .integration-card { padding: 18px; }
+  .crm-management-panel .integration-toolbar > label { flex-basis: auto; width: 100%; }
+}

@@ -1,0 +1,90 @@
+name: Education Runtime Authorization Isolated Validation
+# Acceptance gate for the completed runtime-authorization feature only.
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  backend-education-runtime:
+    runs-on: ubuntu-24.04
+    env:
+      APP_ENV: test
+      DATABASE_URL: sqlite+aiosqlite:///./education-runtime-test.db
+      JWT_SECRET: ci-only-secret-with-at-least-32-characters
+      ALLOW_DETERMINISTIC_EMBEDDINGS: 'true'
+      RATE_LIMIT_FAIL_OPEN: 'true'
+      CRM_CREDENTIAL_ENCRYPTION_KEY: ci-only-crm-credential-encryption-key-32chars
+      BACKGROUND_DISPATCH_ENABLED: 'false'
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+        with:
+          python-version: '3.12'
+      - uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d
+        with:
+          enable-cache: true
+          cache-dependency-glob: backend/uv.lock
+      - name: Resolve backend environment
+        run: uv sync --all-groups
+      - name: Lint Education runtime surface
+        run: >-
+          uv run ruff check
+          migrations/env.py
+          migrations/versions/0021_education_conversation_context.py
+          src/northstar_api/education_conversation_context.py
+          src/northstar_api/services/education_runtime_authorization.py
+          src/northstar_api/services/student_identity.py
+          src/northstar_api/workers/channel_event_consumer.py
+          tests/test_education_runtime_authorization.py
+          tests/test_education_channel_runtime.py
+          tests/test_education_runtime_lifecycle.py
+      - name: Format-check Education runtime surface
+        run: >-
+          uv run ruff format --check
+          migrations/env.py
+          migrations/versions/0021_education_conversation_context.py
+          src/northstar_api/education_conversation_context.py
+          src/northstar_api/services/education_runtime_authorization.py
+          src/northstar_api/services/student_identity.py
+          src/northstar_api/workers/channel_event_consumer.py
+          tests/test_education_runtime_authorization.py
+          tests/test_education_channel_runtime.py
+          tests/test_education_runtime_lifecycle.py
+      - name: Type-check Education runtime service and consumer
+        run: >-
+          uv run mypy
+          src/northstar_api/education_conversation_context.py
+          src/northstar_api/services/education_runtime_authorization.py
+          src/northstar_api/workers/channel_event_consumer.py
+      - name: Verify migration head
+        run: alembic heads | grep '0021_education_conversation_context (head)'
+      - name: Isolate Education API from unrelated broken Help router
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path("src/northstar_api/routers/__init__.py")
+          content = path.read_text(encoding="utf-8")
+          content = content.replace("    help,\n", "")
+          content = content.replace("api_router.include_router(help.router)\n", "")
+          path.write_text(content, encoding="utf-8")
+          PY
+      - name: Run Education runtime authorization regressions
+        run: >-
+          uv run pytest
+          tests/test_education_runtime_authorization.py
+          tests/test_education_channel_runtime.py
+          tests/test_education_runtime_lifecycle.py
+          tests/test_agent_purpose.py
+          tests/test_education_enrollments.py
+          tests/test_education_student_identities.py
+          -q

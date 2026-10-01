@@ -1,0 +1,45 @@
+.crm-one-click { display: grid; gap: 22px; overflow: hidden; }
+.crm-one-click__heading { align-items: flex-start; }
+.crm-one-click__heading > div:first-child { max-width: 820px; }
+.crm-one-click__heading h3 { margin: 10px 0 6px; }
+.crm-one-click__providers { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px; }
+.crm-one-click__provider { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 15px; border: 1px solid var(--border, #e5e9f1); border-radius: 14px; background: var(--surface, #fff); }
+.crm-one-click__provider-icon { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 12px; color: var(--brand, #146cf6); background: var(--surface-brand, #edf4ff); }
+.crm-one-click__provider-copy { min-width: 0; display: grid; gap: 4px; }
+.crm-one-click__provider-copy > span { display: flex; align-items: center; flex-wrap: wrap; gap: 7px; }
+.crm-one-click__provider-copy small { color: var(--muted, #667085); }
+.crm-one-click__warning { color: #a05a00 !important; }
+.crm-one-click__provider-status { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 12px; padding-top: 8px; border-top: 1px solid var(--border, #e5e9f1); font-size: .78rem; color: var(--muted, #667085); }
+.crm-one-click__provider-status span { display: inline-flex; align-items: center; gap: 6px; }
+.crm-one-click__provider-status i { width: 8px; height: 8px; border-radius: 50%; background: #cbd2df; }
+.crm-one-click__provider-status .is-complete i { background: #1c9b62; }
+.crm-one-click__setup { display: grid; gap: 16px; padding: 18px; border: 1px solid #bcd4ff; border-radius: 16px; background: #f7faff; }
+.crm-one-click__setup h4, .crm-one-click__setup p, .crm-one-click__connections h4, .crm-one-click__connections p { margin: 0; }
+.crm-one-click__setup p, .crm-one-click__connections p { color: var(--muted, #667085); }
+.crm-one-click__form { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.crm-one-click__form label { display: grid; gap: 6px; color: var(--muted, #667085); font-size: .82rem; font-weight: 600; }
+.crm-one-click__form input, .crm-one-click__form select { width: 100%; min-height: 40px; padding: 9px 11px; border: 1px solid var(--border, #dce1ea); border-radius: 9px; background: var(--surface, #fff); color: inherit; }
+.crm-one-click__setup-actions { display: flex; justify-content: flex-end; gap: 10px; }
+.crm-one-click__connections { display: grid; gap: 14px; }
+.crm-one-click__connection { display: grid; gap: 14px; padding: 18px; border: 1px solid var(--border, #e5e9f1); border-radius: 15px; }
+.crm-one-click__connection header, .crm-one-click__connection footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+.crm-one-click__connection header > span { display: grid; gap: 2px; }
+.crm-one-click__connection header small { color: var(--muted, #667085); text-transform: capitalize; }
+.crm-one-click__connection footer { justify-content: flex-end; padding-top: 4px; }
+.crm-one-click__flow { display: grid; grid-template-columns: repeat(7, minmax(100px, 1fr)); gap: 8px; overflow-x: auto; }
+.crm-one-click__flow span { min-width: 100px; display: grid; place-items: center; align-content: center; gap: 7px; padding: 12px 8px; border-radius: 10px; color: var(--muted, #667085); background: #f4f6f9; font-size: .76rem; text-align: center; }
+.crm-one-click__flow span svg { width: 17px; }
+.crm-one-click__flow .is-complete { color: #14734d; background: #ecfbf4; }
+.crm-one-click__flow .is-pending { color: #8c5b00; background: #fff7e8; }
+.crm-one-click__blockers { display: flex; flex-wrap: wrap; gap: 8px; }
+.crm-one-click__blockers span { display: inline-flex; align-items: center; gap: 5px; padding: 7px 9px; border-radius: 9px; background: #fff4e5; color: #8c5b00; font-size: .78rem; }
+.crm-one-click__blockers svg { width: 15px; }
+.crm-one-click__certificate { display: flex; align-items: center; gap: 10px; padding: 12px; border: 1px solid #a9e1c8; border-radius: 12px; background: #effbf5; color: #126b48; }
+.crm-one-click__certificate > span { display: grid; gap: 2px; }
+.crm-one-click__certificate small { color: #3d7861; }
+@media (max-width: 760px) {
+  .crm-one-click__provider { grid-template-columns: auto minmax(0, 1fr); }
+  .crm-one-click__provider > button { grid-column: 1 / -1; width: 100%; }
+  .crm-one-click__setup-actions, .crm-one-click__connection footer { flex-direction: column-reverse; }
+  .crm-one-click__setup-actions button, .crm-one-click__connection footer button { width: 100%; }
+}

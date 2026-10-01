@@ -1,0 +1,237 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CI: "true"
+
+jobs:
+  frontend:
+    name: Frontend quality gate
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with: {node-version: 22.13.0, cache: npm}
+      - run: npm ci --no-audit --no-fund
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+
+  backend:
+    name: Backend quality gate
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    defaults:
+      run: {working-directory: backend}
+    env:
+      APP_ENV: test
+      DATABASE_URL: sqlite+aiosqlite:///./northstar-test.db
+      JWT_SECRET: ci-only-secret-with-at-least-32-characters
+      ALLOW_DETERMINISTIC_EMBEDDINGS: "true"
+      RATE_LIMIT_FAIL_OPEN: "true"
+      CRM_CREDENTIAL_ENCRYPTION_KEY: ci-only-crm-credential-encryption-key-32chars
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with: {persist-credentials: false}
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with: {python-version: "3.12"}
+      - uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
+        with:
+          enable-cache: true
+          cache-dependency-glob: backend/uv.lock
+      - run: uv sync --all-groups --locked
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+      - run: uv run mypy src
+      - run: uv run pytest --cov=src/northstar_api --cov-report=term-missing --cov-report=xml --junitxml=test-results.xml
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        if: always()
+        with:
+          name: backend-coverage
+          path: |
+            backend/coverage.xml
+            backend/test-results.xml
+          if-no-files-found: warn
+          retention-days: 14
+
+  configuration:
+    name: Deployment configuration gate
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with: {persist-credentials: false}
+      - name: Validate repository architecture
+        run: bash scripts/validate-architecture.sh
+      - run: cp .env.example .env
+      - run: docker compose config --quiet
+      - run: kubectl kustomize kubernetes/base > /tmp/northstar.yaml
+      - name: Reject mutable production image tags
+        run: |
+          if grep -Eq 'image: .*:(latest|main|master)$' /tmp/northstar.yaml; then
+            echo 'Mutable image tag found in Kubernetes manifests' >&2
+            exit 1
+          fi
+      - name: Validate Kubernetes manifests
+        run: |
+          KUBECONFORM_VERSION=0.7.0
+          curl --fail --silent --show-error --location \
+            "https://github.com/yannh/kubeconform/releases/download/v${KUBECONFORM_VERSION}/kubeconform-linux-amd64.tar.gz" \
+            --output /tmp/kubeconform.tar.gz
+          echo 'c31518ddd122663b3f3aa874cfe8178cb0988de944f29c74a0b9260920d115d3  /tmp/kubeconform.tar.gz' | sha256sum --check
+          tar -xzf /tmp/kubeconform.tar.gz -C /tmp kubeconform
+          /tmp/kubeconform -strict -summary /tmp/northstar.yaml
+
+  security:
+    name: Source and secret security gate
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: gitleaks/gitleaks-action@e0c47f4f8be36e29cdc102c57e68cb5cbf0e8d1e # v3.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_ENABLE_SUMMARY: "true"
+      - uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
+        with:
+          scan-type: fs
+          scan-ref: .
+          scanners: vuln,misconfig,secret
+          severity: HIGH,CRITICAL
+          ignore-unfixed: true
+          exit-code: "1"
+
+  dependency-review:
+    name: Dependency review (optional repository capability)
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with: {persist-credentials: false}
+      - uses: actions/dependency-review-action@a1d282b36b6f3519aa1f3fc636f609c47dddb294 # v5.0.0
+        continue-on-error: true
+        with: {fail-on-severity: high}
+      - name: Explain optional dependency review
+        if: failure()
+        run: echo 'Dependency Review requires GitHub Dependency Graph/GHAS on this repository; Trivy and lockfile quality gates remain blocking.'
+
+  integration:
+    name: Production topology integration gate
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    needs: [frontend, backend, configuration, security]
+    env:
+      WEB_PORT: "3100"
+      API_PORT: "8100"
+      POSTGRES_PORT: "55432"
+      REDIS_PORT: "6399"
+      RABBITMQ_PORT: "5673"
+      RABBITMQ_MANAGEMENT_PORT: "15673"
+      KAFKA_HOST_PORT: "29093"
+      MINIO_API_PORT: "9010"
+      MINIO_CONSOLE_PORT: "9011"
+      WEB_CSP_EXTRA_CONNECT_SRC: http://localhost:9010
+      WEB_URL: http://localhost:3100
+      API_URL: http://localhost:8100
+      OBJECT_STORE_URL: http://localhost:9010
+      SMOKE_WEB_ORIGIN: http://localhost:3100
+      SMOKE_ADMIN_EMAIL: admin@example.com
+      SMOKE_ADMIN_PASSWORD: change-me-before-first-run
+      SMOKE_TIMEOUT_SECONDS: "300"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with: {persist-credentials: false}
+      - run: cp .env.example .env
+      - name: Build all application workloads
+        run: docker compose build web api migrate worker job-dispatcher outbox-relay analytics-consumer object-cleaner crm-router crm-delivery crm-reconciliation channel-event-consumer crm-webhook-consumer
+      - name: Scan runtime API image
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
+        with:
+          image-ref: northstar/api:local
+          severity: CRITICAL
+          ignore-unfixed: true
+          exit-code: "1"
+      - name: Scan runtime web image
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
+        with:
+          image-ref: northstar/web:local
+          severity: CRITICAL
+          ignore-unfixed: true
+          exit-code: "1"
+      - name: Start complete topology
+        run: docker compose up --detach --no-build
+      - name: Run end-to-end smoke checks
+        run: bash scripts/smoke.sh
+      - name: Verify migration heads
+        run: |
+          current_heads="$(docker compose exec -T api alembic current | sed -n 's/ (head)$//p' | sort)"
+          expected_heads="$(docker compose exec -T api alembic heads | sed -n 's/ (head)$//p' | sort)"
+          if [ -z "$expected_heads" ]; then
+            echo 'Alembic reported no repository migration heads' >&2
+            exit 1
+          fi
+          if [ "$current_heads" != "$expected_heads" ]; then
+            echo 'Database migration heads do not match the repository heads' >&2
+            printf 'Current:\n%s\nExpected:\n%s\n' "$current_heads" "$expected_heads" >&2
+            exit 1
+          fi
+      - name: Verify CRM API and migrated verification columns
+        run: |
+          docker compose exec -T api python - <<'PY'
+          import asyncio
+          from sqlalchemy import text
+          from northstar_api.config import get_settings
+          from northstar_api.database import build_engine
+          from northstar_api.main import app
+          paths = app.openapi()['paths']
+          for path in ('/api/v1/crm/providers', '/api/v1/crm/deliveries/{delivery_id}/retry', '/api/v1/crm/routes/{route_id}'):
+              assert path in paths, f'Missing API contract: {path}'
+          async def inspect_schema():
+              engine = build_engine(get_settings())
+              try:
+                  async with engine.connect() as connection:
+                      columns = set((await connection.execute(text("SELECT column_name FROM information_schema.columns WHERE table_schema = 'public' AND table_name = 'crm_deliveries'"))).scalars())
+                      required = {'verification_status', 'verification_attempt_count', 'verification_cycle_attempts', 'verification_evidence_json', 'next_verification_at', 'retry_cycle_attempts', 'payload_json'}
+                      assert required <= columns, f'Missing migrated columns: {required - columns}'
+              finally:
+                  await engine.dispose()
+          asyncio.run(inspect_schema())
+          print('CRM API contracts and PostgreSQL verification columns are present')
+          PY
+      - name: Capture diagnostic logs
+        if: always()
+        run: docker compose logs --no-color > compose.log
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        if: always()
+        with:
+          name: compose-integration-logs
+          path: compose.log
+          if-no-files-found: error
+          retention-days: 14
+      - name: Stop topology
+        if: always()
+        run: docker compose down --volumes --remove-orphans

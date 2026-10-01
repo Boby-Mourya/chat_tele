@@ -1,0 +1,264 @@
+.education-enrollments-page {
+  display: grid;
+  gap: 20px;
+}
+
+.education-enrollment-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.education-enrollment-stats .card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.education-enrollment-stats .card > svg {
+  width: 20px;
+  height: 20px;
+  color: var(--brand, #6d5dfc);
+  flex: 0 0 auto;
+}
+
+.education-enrollment-stats strong,
+.education-enrollment-stats small {
+  display: block;
+}
+
+.education-enrollment-stats strong {
+  font-size: 1.45rem;
+  line-height: 1.1;
+}
+
+.education-enrollment-stats small {
+  margin-top: 4px;
+  color: var(--text-muted, #6b7280);
+}
+
+.education-enrollment-directory {
+  min-width: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.education-enrollment-toolbar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 20px;
+  border-bottom: 1px solid var(--border, #e5e7eb);
+}
+
+.education-enrollment-toolbar h3,
+.education-enrollment-toolbar p {
+  margin: 0;
+}
+
+.education-enrollment-toolbar p {
+  margin-top: 4px;
+  color: var(--text-muted, #6b7280);
+  font-size: 0.875rem;
+}
+
+.education-enrollment-toolbar__filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.education-enrollment-toolbar__filters label,
+.education-enrollment-search {
+  position: relative;
+}
+
+.education-enrollment-toolbar select,
+.education-enrollment-picker select,
+.education-enrollment-search input {
+  min-height: 38px;
+  border: 1px solid var(--border, #dfe3ea);
+  border-radius: 10px;
+  background: var(--surface, #fff);
+  color: var(--text, #111827);
+  font: inherit;
+}
+
+.education-enrollment-toolbar select,
+.education-enrollment-picker select {
+  padding: 0 34px 0 11px;
+}
+
+.education-enrollment-search input {
+  width: min(320px, 34vw);
+  padding: 0 12px 0 36px;
+}
+
+.education-enrollment-search > svg {
+  position: absolute;
+  left: 11px;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  transform: translateY(-50%);
+  color: var(--text-muted, #6b7280);
+  pointer-events: none;
+}
+
+.education-enrollment-table-wrap {
+  position: relative;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.education-enrollment-table {
+  width: 100%;
+  min-width: 1040px;
+  border-collapse: collapse;
+}
+
+.education-enrollment-table th,
+.education-enrollment-table td {
+  padding: 14px 16px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--border, #edf0f4);
+}
+
+.education-enrollment-table th {
+  color: var(--text-muted, #6b7280);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: var(--surface-subtle, #fafafa);
+}
+
+.education-enrollment-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.education-enrollment-table tbody tr:hover {
+  background: var(--surface-subtle, #fafafa);
+}
+
+.education-enrollment-table tbody tr.education-enrollment-group-start:not(:first-child) td {
+  border-top: 2px solid var(--border, #dfe3ea);
+}
+
+.education-enrollment-student-cell,
+.education-enrollment-action-cell {
+  vertical-align: middle !important;
+}
+
+.education-multi-course {
+  display: inline-flex;
+  width: fit-content;
+  margin-top: 8px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: #eeeafd;
+  color: #5140a8;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.education-enrollment-table td strong,
+.education-enrollment-table td small,
+.education-enrollment-table td a {
+  display: block;
+}
+
+.education-enrollment-table td a {
+  width: fit-content;
+  font-weight: 700;
+  color: inherit;
+  text-decoration: none;
+}
+
+.education-enrollment-table td a:hover {
+  text-decoration: underline;
+}
+
+.education-enrollment-table td small {
+  margin-top: 3px;
+  max-width: 300px;
+  color: var(--text-muted, #6b7280);
+  font-size: 0.8rem;
+}
+
+.education-enrollment-table td time,
+.education-enrollment-table td > span {
+  white-space: nowrap;
+  color: var(--text-muted, #6b7280);
+}
+
+.education-enrollment-picker {
+  display: grid;
+  gap: 16px;
+}
+
+.education-enrollment-picker .education-enrollment-search input {
+  width: 100%;
+}
+
+.education-enrollment-picker > label:not(.education-enrollment-search) {
+  display: grid;
+  gap: 7px;
+}
+
+.education-enrollment-picker > label > span {
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.education-enrollment-picker select {
+  width: 100%;
+}
+
+.education-enrollment-picker > p {
+  margin: 0;
+  padding: 12px;
+  border-radius: 10px;
+  background: var(--surface-subtle, #f7f7f9);
+  color: var(--text-muted, #6b7280);
+  font-size: 0.875rem;
+}
+
+@media (max-width: 1180px) {
+  .education-enrollment-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .education-enrollment-toolbar {
+    flex-direction: column;
+  }
+
+  .education-enrollment-toolbar__filters {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .education-enrollment-search input {
+    width: min(420px, 70vw);
+  }
+}
+
+@media (max-width: 720px) {
+  .education-enrollment-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .education-enrollment-toolbar__filters,
+  .education-enrollment-toolbar__filters label,
+  .education-enrollment-toolbar__filters select,
+  .education-enrollment-search,
+  .education-enrollment-search input {
+    width: 100%;
+  }
+}

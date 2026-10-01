@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: northstar-channel-health-monitor, namespace: northstar}
+spec:
+  replicas: 1
+  selector: {matchLabels: {app: northstar-channel-health-monitor}}
+  template:
+    metadata: {labels: {app: northstar-channel-health-monitor, app.kubernetes.io/part-of: northstar}}
+    spec:
+      securityContext: {runAsNonRoot: true, runAsUser: 10001, runAsGroup: 10001}
+      containers:
+        - name: channel-health-monitor
+          image: northstar/api:replace-with-immutable-tag
+          command: [python, -m, northstar_api.workers.channel_health_monitor]
+          envFrom: [{configMapRef: {name: northstar-config}}, {secretRef: {name: northstar-secrets}}]
+          env: [{name: DATABASE_URL, valueFrom: {secretKeyRef: {name: northstar-secrets, key: WORKER_DATABASE_URL}}}]
+          resources: {requests: {cpu: 100m, memory: 256Mi}, limits: {cpu: "1", memory: 1Gi}}
+          readinessProbe:
+            exec:
+              command: [python, -m, northstar_api.workers.worker_process_probe, --expect, northstar_api.workers.channel_health_monitor]
+            initialDelaySeconds: 2
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 3
+          livenessProbe:
+            exec:
+              command: [python, -m, northstar_api.workers.worker_process_probe, --expect, northstar_api.workers.channel_health_monitor]
+            initialDelaySeconds: 10
+            periodSeconds: 20
+            timeoutSeconds: 3
+            failureThreshold: 3
+          securityContext: {allowPrivilegeEscalation: false, readOnlyRootFilesystem: true, capabilities: {drop: [ALL]}}
+          volumeMounts: [{name: tmp, mountPath: /tmp}]
+      volumes: [{name: tmp, emptyDir: {sizeLimit: 128Mi}}]

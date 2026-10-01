@@ -1,0 +1,211 @@
+.enrollment-manager {
+  display: grid;
+  gap: 20px;
+}
+
+.enrollment-manager__student,
+.enrollment-editor__heading,
+.enrollment-list-section__heading,
+.enrollment-row__title,
+.enrollment-editor__heading-actions,
+.enrollment-row__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.enrollment-manager__student {
+  padding: 12px 14px;
+  border: 1px solid var(--border-color, #e4e7ec);
+  border-radius: 12px;
+  background: var(--surface-muted, #f8fafc);
+}
+
+.enrollment-manager__student span,
+.enrollment-editor__heading > div:first-child,
+.enrollment-list-section__heading > div,
+.enrollment-row__main {
+  display: grid;
+  gap: 3px;
+}
+
+.enrollment-manager__student small,
+.enrollment-editor__heading p,
+.enrollment-list-section__heading p,
+.enrollment-row__meta span,
+.enrollment-empty p,
+.enrollment-prerequisite-note p,
+.enrollment-readonly-note p {
+  margin: 0;
+  color: var(--text-muted, #667085);
+  font-size: 13px;
+}
+
+.enrollment-editor,
+.enrollment-list-section {
+  display: grid;
+  gap: 16px;
+  padding: 18px;
+  border: 1px solid var(--border-color, #e4e7ec);
+  border-radius: 14px;
+}
+
+.enrollment-editor h3,
+.enrollment-list-section h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.enrollment-editor__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.enrollment-prerequisite-note,
+.enrollment-readonly-note,
+.enrollment-empty,
+.enrollment-load-error {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 13px 14px;
+  border-radius: 12px;
+  background: var(--surface-muted, #f8fafc);
+}
+
+.enrollment-prerequisite-note svg,
+.enrollment-readonly-note svg,
+.enrollment-empty svg {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  margin-top: 1px;
+}
+
+.enrollment-error,
+.enrollment-load-error p {
+  margin: 0;
+  color: var(--danger, #b42318);
+  font-size: 13px;
+}
+
+.enrollment-list-section__heading select {
+  min-width: 150px;
+}
+
+.enrollment-list {
+  display: grid;
+  gap: 10px;
+}
+
+.enrollment-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid var(--border-color, #e4e7ec);
+  border-radius: 12px;
+  background: var(--surface, #fff);
+}
+
+.enrollment-row.is-revoked,
+.enrollment-row.is-expired,
+.enrollment-row.is-graduated {
+  background: var(--surface-muted, #f8fafc);
+}
+
+.enrollment-row__icon {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--surface-muted, #f2f4f7);
+}
+
+.enrollment-row__icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.enrollment-row__title {
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.enrollment-row__meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px 16px;
+  margin-top: 8px;
+}
+
+.enrollment-row__meta span {
+  display: grid;
+  gap: 1px;
+  overflow-wrap: anywhere;
+}
+
+.enrollment-row__meta b {
+  color: var(--text-primary, #344054);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.enrollment-row__actions {
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  max-width: 310px;
+}
+
+.enrollment-loading {
+  padding: 24px;
+  text-align: center;
+  color: var(--text-muted, #667085);
+}
+
+.enrollment-empty strong,
+.enrollment-readonly-note strong {
+  display: block;
+  margin-bottom: 3px;
+}
+
+@media (max-width: 900px) {
+  .enrollment-editor__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .enrollment-row {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .enrollment-row__actions {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+    max-width: none;
+  }
+}
+
+@media (max-width: 620px) {
+  .enrollment-manager__student,
+  .enrollment-editor__heading,
+  .enrollment-list-section__heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .enrollment-editor__grid,
+  .enrollment-row__meta {
+    grid-template-columns: 1fr;
+  }
+
+  .enrollment-editor__heading-actions,
+  .enrollment-row__actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}

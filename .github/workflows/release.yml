@@ -1,0 +1,127 @@
+name: Release images
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+  id-token: write
+  attestations: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    name: Re-verify release source
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with: {node-version: 22.13.0, cache: npm}
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with: {python-version: "3.12"}
+      - uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
+        with:
+          enable-cache: true
+          cache-dependency-glob: backend/uv.lock
+      - name: Validate repository architecture
+        run: bash scripts/validate-architecture.sh
+      - run: npm ci --no-audit --no-fund
+      - run: npm run lint && npm run typecheck && npm test && npm run build
+      - run: uv sync --project backend --all-groups --locked
+      - run: uv run --project backend ruff check backend && uv run --project backend ruff format --check backend
+      - run: uv run --project backend mypy --config-file backend/pyproject.toml backend/src
+      - run: uv run --project backend pytest -c backend/pyproject.toml backend/tests
+      - run: cp .env.example .env && docker compose config --quiet && kubectl kustomize kubernetes/overlays/production >/dev/null
+      - name: Validate release-time public origin
+        env:
+          S3_PUBLIC_ENDPOINT_URL: ${{ vars.S3_PUBLIC_ENDPOINT_URL }}
+        run: |
+          test -n "$S3_PUBLIC_ENDPOINT_URL" || { echo 'Repository variable S3_PUBLIC_ENDPOINT_URL is required' >&2; exit 1; }
+          [[ "$S3_PUBLIC_ENDPOINT_URL" =~ ^https://[^[:space:]]+$ ]] || { echo 'S3_PUBLIC_ENDPOINT_URL must be one HTTPS origin' >&2; exit 1; }
+      - uses: gitleaks/gitleaks-action@e0c47f4f8be36e29cdc102c57e68cb5cbf0e8d1e # v3.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  publish:
+    name: Publish ${{ matrix.component }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    needs: [verify]
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - component: api
+            context: backend
+            dockerfile: backend/Dockerfile
+            image: ghcr.io/${{ github.repository_owner }}/northstar-api
+            build_args: ""
+          - component: web
+            context: .
+            dockerfile: frontend/Dockerfile
+            image: ghcr.io/${{ github.repository_owner }}/northstar-web
+            build_args: |
+              VITE_API_URL=/api/v1
+              VITE_DEMO_MODE=false
+              S3_PUBLIC_ENDPOINT_URL=${{ vars.S3_PUBLIC_ENDPOINT_URL }}
+              WEB_CSP_EXTRA_CONNECT_SRC=${{ vars.S3_PUBLIC_ENDPOINT_URL }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with: {persist-credentials: false}
+      - uses: docker/setup-buildx-action@37fe631027851001ddb9b187196cc803df7f5f0e # v4.3.0
+      - uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - id: meta
+        uses: docker/metadata-action@dc802804100637a589fabce1cb79ff13a1411302 # v6.2.0
+        with:
+          images: ${{ matrix.image }}
+          tags: |
+            type=sha,format=long
+            type=ref,event=tag
+      - id: build
+        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # v6
+        with:
+          context: ${{ matrix.context }}
+          file: ${{ matrix.dockerfile }}
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          platforms: linux/amd64
+          cache-from: type=gha,scope=${{ matrix.component }}
+          cache-to: type=gha,mode=max,scope=${{ matrix.component }}
+          provenance: mode=max
+          sbom: true
+          build-args: ${{ matrix.build_args }}
+      - name: Block critical runtime vulnerabilities
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
+        with:
+          image-ref: ${{ matrix.image }}@${{ steps.build.outputs.digest }}
+          severity: CRITICAL
+          ignore-unfixed: true
+          exit-code: "1"
+      - name: Attest image provenance
+        uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6 # v4
+        with:
+          subject-name: ${{ matrix.image }}
+          subject-digest: ${{ steps.build.outputs.digest }}
+          push-to-registry: true
+
+  release-gate:
+    name: Release gate
+    runs-on: ubuntu-24.04
+    needs: [publish]
+    steps:
+      - run: echo "All immutable images, SBOMs, vulnerability gates, and provenance attestations passed."

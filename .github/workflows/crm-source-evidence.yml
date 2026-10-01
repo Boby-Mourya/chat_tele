@@ -1,0 +1,39 @@
+name: CRM source evidence
+
+on:
+  push:
+    branches: [feature/lead-crm-omnichannel-platform]
+    paths: [.github/workflows/crm-source-evidence.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Archive only committed files for local verification
+        run: |
+          git archive --format=tar --output="$RUNNER_TEMP/crm-source.tar" HEAD
+          git rev-parse HEAD > "$RUNNER_TEMP/crm-source-commit.txt"
+          sha256sum "$RUNNER_TEMP/crm-source.tar"
+      - name: Package the locked Ruff executable for offline linting
+        run: |
+          python3 -m pip install --target "$RUNNER_TEMP/ruff-package" ruff==0.16.6
+          cp "$RUNNER_TEMP/ruff-package/bin/ruff" "$RUNNER_TEMP/ruff"
+          "$RUNNER_TEMP/ruff" --version
+          sha256sum "$RUNNER_TEMP/ruff"
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: crm-source-evidence
+          path: |
+            ${{ runner.temp }}/crm-source.tar
+            ${{ runner.temp }}/crm-source-commit.txt
+            ${{ runner.temp }}/ruff
+          retention-days: 1
+          if-no-files-found: error

@@ -1,0 +1,74 @@
+.students-page { display: flex; flex-direction: column; gap: 20px; }
+
+.student-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.student-stats .card { min-height: 104px; padding: 18px; display: flex; align-items: center; gap: 14px; }
+.student-stats strong { display: block; color: var(--ink); font-size: 25px; line-height: 1.05; }
+.student-stats small { display: block; margin-top: 5px; color: var(--muted); font-size: 12px; font-weight: 650; }
+.student-stat-icon { width: 42px; height: 42px; border-radius: 12px; display: inline-grid; place-items: center; color: var(--blue); background: var(--blue-soft); }
+.student-stat-icon--active { color: #08765f; background: #eaf9f4; }
+.student-stat-icon--archived { color: #6a7280; background: #f1f3f7; }
+.student-stat-icon svg { width: 19px; height: 19px; }
+
+.student-directory-card { overflow: hidden; }
+.student-toolbar { padding: 18px 20px; display: flex; align-items: center; justify-content: space-between; gap: 18px; border-bottom: 1px solid var(--line); }
+.student-toolbar h3 { font-size: 16px; color: var(--ink); }
+.student-toolbar p { margin-top: 4px; color: var(--muted); font-size: 12px; }
+.student-toolbar__filters { display: flex; align-items: center; gap: 10px; }
+.student-search { min-width: min(390px, 44vw); height: 42px; padding: 0 12px; display: flex; align-items: center; gap: 8px; border: 1px solid var(--line-strong); border-radius: 10px; background: #fff; }
+.student-search:focus-within { border-color: #77aaff; box-shadow: 0 0 0 3px rgb(20 108 246 / .1); }
+.student-search svg { width: 17px; height: 17px; color: #8490a3; flex: 0 0 auto; }
+.student-search input { width: 100%; border: 0; outline: 0; color: var(--ink); background: transparent; }
+.student-status-filter select { height: 42px; min-width: 142px; padding: 0 34px 0 12px; border: 1px solid var(--line-strong); border-radius: 10px; color: #303b50; background: #fff; font-weight: 650; appearance: none; background-image: linear-gradient(45deg, transparent 50%, #758094 50%), linear-gradient(135deg, #758094 50%, transparent 50%); background-position: calc(100% - 17px) 18px, calc(100% - 12px) 18px; background-size: 5px 5px; background-repeat: no-repeat; }
+.student-status-filter select:focus { outline: 0; border-color: #77aaff; box-shadow: 0 0 0 3px rgb(20 108 246 / .1); }
+
+.student-table-wrap { overflow-x: auto; }
+.student-table { width: 100%; border-collapse: collapse; }
+.student-table th { padding: 11px 16px; color: #727d8f; background: #fafbfc; border-bottom: 1px solid var(--line); text-align: left; font-size: 11px; letter-spacing: .03em; text-transform: uppercase; white-space: nowrap; }
+.student-table td { padding: 15px 16px; border-bottom: 1px solid #edf0f4; color: #3b4658; font-size: 13px; vertical-align: middle; }
+.student-table tbody tr:last-child td { border-bottom: 0; }
+.student-table tbody tr:hover { background: #fbfcfe; }
+.student-table code { display: inline-flex; padding: 4px 7px; border-radius: 7px; color: #30415d; background: #f2f5f9; border: 1px solid #e4e9f0; font-size: 12px; font-weight: 750; }
+.student-table td:nth-child(2) { min-width: 230px; }
+.student-table td:nth-child(2) strong { display: block; color: var(--ink); font-size: 13px; }
+.student-table td:nth-child(2) small { display: block; margin-top: 4px; color: var(--muted); }
+.student-table time { color: var(--muted); white-space: nowrap; }
+.student-actions { display: flex; align-items: center; justify-content: flex-end; gap: 6px; }
+.student-custom-summary { display: flex; flex-wrap: wrap; gap: 5px; min-width: 210px; }
+.student-custom-summary span { padding: 4px 7px; border-radius: 7px; background: #f5f7fb; border: 1px solid #e7ebf1; color: #596579; font-size: 11px; }
+.student-custom-summary b { color: #364258; }
+.student-muted { color: var(--muted); }
+
+.student-editor { display: flex; flex-direction: column; gap: 18px; }
+.student-custom-fields { padding: 14px; border: 1px solid var(--line); border-radius: 12px; background: #fafbfc; }
+.student-custom-fields__header { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.student-custom-fields__header strong { display: block; color: var(--ink); font-size: 13px; }
+.student-custom-fields__header small { display: block; margin-top: 3px; color: var(--muted); font-size: 11px; }
+.student-custom-fields__rows { margin-top: 12px; display: flex; flex-direction: column; gap: 8px; }
+.student-custom-row { display: grid; grid-template-columns: minmax(120px, .8fr) minmax(160px, 1.2fr) 34px; gap: 8px; }
+.student-custom-row input { min-width: 0; height: 38px; padding: 0 10px; border: 1px solid var(--line-strong); border-radius: 9px; background: #fff; }
+.student-custom-row input:focus { outline: 0; border-color: #77aaff; box-shadow: 0 0 0 3px rgb(20 108 246 / .1); }
+.student-custom-row button { width: 34px; height: 38px; display: grid; place-items: center; border: 0; border-radius: 8px; color: #8791a2; background: transparent; cursor: pointer; }
+.student-custom-row button:hover { color: #b53434; background: #fff0f0; }
+.student-custom-row svg { width: 16px; height: 16px; }
+.student-custom-empty { margin-top: 12px; color: var(--muted); font-size: 12px; }
+.student-form-error { padding: 10px 12px; border: 1px solid #f6d0d0; border-radius: 10px; color: #b53434; background: #fff0f0; font-size: 13px; font-weight: 650; }
+.student-archive-copy { padding: 12px; border: 1px solid var(--line); border-radius: 10px; color: #4a5568; background: #f8fafc; }
+
+@media (max-width: 900px) {
+  .student-toolbar { align-items: stretch; flex-direction: column; }
+  .student-toolbar__filters { width: 100%; }
+  .student-search { min-width: 0; flex: 1; }
+}
+
+@media (max-width: 700px) {
+  .student-stats { grid-template-columns: 1fr; }
+  .student-stats .card { min-height: 84px; }
+  .student-toolbar__filters { align-items: stretch; flex-direction: column; }
+  .student-search, .student-status-filter select { width: 100%; }
+  .student-actions { align-items: stretch; flex-direction: column; }
+  .student-actions .button { width: 100%; }
+  .student-editor .two-fields { grid-template-columns: 1fr; }
+  .student-custom-fields__header { align-items: stretch; flex-direction: column; }
+  .student-custom-row { grid-template-columns: 1fr 34px; }
+  .student-custom-row input:first-child { grid-column: 1 / -1; }
+}

@@ -1,0 +1,68 @@
+/* Design reference: user-supplied Online Courses Dashboard PDF, page 1.
+   Assets, provenance and scope: docs/ONLINE_COURSES_DESIGN.md. */
+@font-face{font-family:Academy Heading;src:url('/design/online-courses/baloo-bhai-2.ttf') format('truetype');font-weight:400 800;font-display:swap}
+@font-face{font-family:Academy Sans;src:url('/design/online-courses/roboto.ttf') format('truetype');font-weight:100 900;font-display:swap}
+:root,.mm-shell,.login-page{
+  color-scheme: light;
+  --academy-black:#0c0b0b;--academy-grey:#f5f5f7;--academy-muted:#626268;
+  --academy-heading:'Academy Heading',sans-serif;--academy-font:'Academy Sans',Arial,sans-serif;
+  --ink:var(--academy-black);--muted:var(--academy-muted);--muted-2:#6c6c73;
+  --surface:#fff;--canvas:#fff;--line:#e5e5e8;--line-strong:#b8b8c0;
+  --blue:var(--academy-black);--blue-hover:#303033;--blue-soft:#ededf0;--navy:#0c0b0b;
+  --m-color-primary:var(--academy-black);--m-color-primary-emphasis:#303033;--m-color-lightprimary:#ededf0;
+  --m-color-secondary:#535359;--m-color-lightsecondary:#efeff1;--m-color-link:#242426;
+  --m-color-lightgray:#f5f5f7;--m-color-lighthover:#ededf0;--m-color-border:#e5e5e8;--m-color-dark:#0c0b0b;
+  --m-color-lightsuccess:#edf5ef;--m-color-lightwarning:#faf3df;--m-color-bodytext:#6b6b70;
+  --radius:16px;--shadow-sm:none;--shadow-md:0 10px 32px #0c0b0b12;--shadow-lg:0 24px 70px #0c0b0b28;
+  font-family:var(--academy-font);color:var(--ink);background:#fff;
+}
+
+/* Semantic colors and compatibility names used across CRM, education, search,
+   account controls and dialogs. Define aliases in each theme scope so custom
+   workspace branding resolves against that workspace's primary color. */
+:root, .mm-shell, .login-page {
+  --on-primary: #fff;
+  --success: #22633a;
+  --success-soft: #e3eee5;
+  --warning: #765600;
+  --warning-soft: #faf0d7;
+  --danger: #a43c32;
+  --danger-hover: #842c24;
+  --danger-soft: #fae7e5;
+  --info: #414148;
+  --info-soft: #ededf0;
+  --mint: var(--success);
+  --purple: #615175;
+  --purple-soft: #eeebf3;
+  --chart-1: #242426;
+  --chart-2: #73737d;
+  --chart-3: #aaaab5;
+  --chart-4: #615175;
+  --chart-5: #22633a;
+  --chart-6: #765600;
+  --focus-ring: #53535b;
+  --radius-control: 9px;
+  --brand: var(--blue);
+  --primary: var(--blue);
+  --text: var(--ink);
+  --text-primary: var(--ink);
+  --text-secondary: var(--muted);
+  --text-muted: var(--muted);
+  --border: var(--line);
+  --surface-muted: var(--academy-grey);
+  --surface-subtle: var(--academy-grey);
+  --m-color-secondary-emphasis: var(--ink);
+  --m-color-muted: var(--academy-grey);
+  --m-color-info: var(--info);
+  --m-color-info-emphasis: var(--info);
+  --m-color-lightinfo: var(--info-soft);
+  --m-color-success: var(--success);
+  --m-color-success-emphasis: var(--success);
+  --m-color-lightsuccess: var(--success-soft);
+  --m-color-warning: var(--warning);
+  --m-color-warning-emphasis: var(--warning);
+  --m-color-lightwarning: var(--warning-soft);
+  --m-color-error: var(--danger);
+  --m-color-error-emphasis: var(--danger-hover);
+  --m-color-lighterror: var(--danger-soft);
+}

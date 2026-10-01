@@ -1,0 +1,34 @@
+.notification-center { position: relative; }
+.notification-center__trigger { position: relative; }
+.notification-center__badge { position: absolute; top: 2px; right: 0; min-width: 17px; height: 17px; padding: 0 4px; display: grid; place-items: center; border: 2px solid #fff; border-radius: 999px; background: #d64545; color: #fff; font-size: 9px; line-height: 1; font-weight: 800; }
+.notification-center__popover { position: absolute; z-index: 250; top: calc(100% + 10px); right: 0; width: min(390px, calc(100vw - 28px)); max-height: min(560px, calc(100vh - 100px)); overflow: hidden; display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 16px; background: #fff; box-shadow: var(--shadow-lg); }
+.notification-center__header { min-height: 72px; padding: 14px 15px; display: flex; align-items: center; justify-content: space-between; gap: 14px; border-bottom: 1px solid var(--line); }
+.notification-center__header > div { min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.notification-center__header strong { color: var(--ink); font-size: 15px; }
+.notification-center__header small { color: var(--muted); font-size: 11px; }
+.notification-center__read-all { flex: 0 0 auto; min-height: 32px; padding: 0 8px; display: inline-flex; align-items: center; gap: 5px; border: 0; border-radius: 8px; background: transparent; color: var(--blue); font-size: 11px; font-weight: 700; }
+.notification-center__read-all:hover:not(:disabled) { background: var(--blue-soft); }
+.notification-center__read-all svg { width: 14px; height: 14px; }
+.notification-center__list { min-height: 110px; overflow-y: auto; overscroll-behavior: contain; }
+.notification-center__state { min-height: 126px; padding: 24px; display: flex; align-items: center; justify-content: center; gap: 8px; color: var(--muted); text-align: center; font-size: 12px; }
+.notification-center__spinner { width: 17px; height: 17px; animation: spin .8s linear infinite; }
+.notification-center__item { width: 100%; min-height: 92px; padding: 14px 15px; display: grid; grid-template-columns: 8px minmax(0,1fr); gap: 11px; border: 0; border-bottom: 1px solid #edf0f4; background: #fff; text-align: left; }
+.notification-center__item:last-child { border-bottom: 0; }
+.notification-center__item:hover { background: #f8fafc; }
+.notification-center__item.is-unread { background: #f5f9ff; }
+.notification-center__item.is-unread:hover { background: #edf5ff; }
+.notification-center__severity { width: 8px; height: 8px; margin-top: 5px; border-radius: 999px; background: #9aa5b5; box-shadow: 0 0 0 3px rgb(154 165 181 / .12); }
+.notification-center__severity--info { background: var(--blue); box-shadow: 0 0 0 3px rgb(20 108 246 / .12); }
+.notification-center__severity--warning { background: var(--warning); box-shadow: 0 0 0 3px rgb(220 122 34 / .13); }
+.notification-center__severity--critical { background: var(--danger); box-shadow: 0 0 0 3px rgb(214 69 69 / .13); }
+.notification-center__copy { min-width: 0; display: flex; flex-direction: column; gap: 5px; }
+.notification-center__copy > span { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.notification-center__copy strong { overflow: hidden; color: #263247; font-size: 13px; line-height: 1.35; text-overflow: ellipsis; white-space: nowrap; }
+.notification-center__item.is-unread .notification-center__copy strong { color: #102c57; }
+.notification-center__copy time { flex: 0 0 auto; color: #8a95a7; font-size: 10px; font-weight: 600; }
+.notification-center__copy small { color: var(--muted); font-size: 11.5px; line-height: 1.45; }
+.notification-center__copy em { color: var(--blue); font-size: 11px; font-style: normal; font-weight: 700; }
+
+@media (max-width: 720px) {
+  .notification-center__popover { position: fixed; top: 68px; right: 12px; left: 12px; width: auto; max-height: calc(100vh - 92px); }
+}

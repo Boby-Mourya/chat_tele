@@ -1,0 +1,22 @@
+:root {
+  --brand-primary: #0c0b0b;
+  --brand-primary-hover: #27272a;
+  --brand-secondary: #6b6b70;
+  --brand-accent: #2563eb;
+  --brand-background: #ffffff;
+  --brand-surface: #ffffff;
+  --brand-border: #e5e7eb;
+  --brand-text: #111827;
+  --brand-muted: #6b7280;
+  --brand-sidebar: #0c0b0b;
+  --brand-sidebar-text: #ffffff;
+  --brand-header: #ffffff;
+  --brand-success: #16a34a;
+  --brand-warning: #d97706;
+  --brand-error: #dc2626;
+  --brand-link: #2563eb;
+  --brand-radius: 12px;
+  --brand-font: Inter, system-ui, sans-serif;
+  --brand-heading-font: Inter, system-ui, sans-serif;
+  --brand-font-size: 16px;
+}

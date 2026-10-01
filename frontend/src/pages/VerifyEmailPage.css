@@ -1,0 +1,29 @@
+.verify-email-panel { align-items: center; }
+.verify-email-inner { width: min(100%, 440px); }
+.verify-email-heading { margin-bottom: 28px; }
+.verification-card, .verification-status, .verification-success, .verification-story-card { border: 1px solid var(--line); border-radius: 16px; background: #fff; box-shadow: var(--shadow-sm); }
+.verification-card { padding: 18px; display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: flex-start; }
+.verification-card__icon { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 13px; color: var(--blue); background: var(--blue-soft); }
+.verification-card__icon svg { width: 21px; height: 21px; }
+.verification-card strong, .verification-status strong, .verification-success strong { color: var(--ink); font-size: 14px; }
+.verification-card p, .verification-success p { margin-top: 6px; color: var(--muted); font-size: 12px; line-height: 1.6; }
+.verify-email-form { margin-top: 20px; }
+.verification-message { padding: 10px 12px; border: 1px solid #c9efe3; border-radius: 9px; color: #08765f; background: #eaf9f4; font-size: 12px; line-height: 1.45; }
+.verify-email-actions { margin-top: 22px; display: flex; justify-content: center; }
+.verification-status { padding: 20px; display: flex; align-items: center; gap: 14px; }
+.verification-status small { display: block; margin-top: 4px; color: var(--muted); font-size: 12px; }
+.verification-spinner { flex: 0 0 auto; }
+.verification-spinner--dark { border-color: rgb(17 24 39 / .2); border-top-color: var(--ink); }
+.verification-success { padding: 24px; display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: flex-start; }
+.verification-success > span { width: 46px; height: 46px; display: grid; place-items: center; border-radius: 50%; color: #08765f; background: #eaf9f4; }
+.verification-success > span svg { width: 24px; height: 24px; }
+.verification-success > a { grid-column: 1 / -1; width: 100%; }
+.verification-success .button { width: 100%; }
+.verification-story-card { position: relative; z-index: 1; margin-top: 34px; padding: 20px; display: grid; grid-template-columns: auto 1fr; gap: 14px; color: #dce8f7; border-color: rgb(255 255 255 / .12); background: rgb(255 255 255 / .06); box-shadow: none; }
+.verification-story-card > svg { width: 25px; height: 25px; color: #67e8c6; }
+.verification-story-card strong { display: block; color: #fff; font-size: 14px; }
+.verification-story-card small { display: block; margin-top: 6px; color: #aebed0; line-height: 1.55; }
+@media (max-width: 780px) {
+  .verify-email-inner { width: min(100%, 460px); }
+  .verification-card { padding: 16px; }
+}

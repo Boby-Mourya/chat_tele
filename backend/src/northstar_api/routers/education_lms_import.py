@@ -1,0 +1,74 @@
+from __future__ import annotations
+
+from typing import Annotated
+from uuid import UUID
+
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy.ext.asyncio import AsyncSession
+
+from northstar_api.database import get_session
+from northstar_api.dependencies import require_permissions
+from northstar_api.education_lms_import_schemas import (
+    LMSStudentImportPayload,
+    to_student_import_rows,
+)
+from northstar_api.education_student_import_schemas import (
+    StudentImportCommitResponse,
+    StudentImportPreview,
+)
+from northstar_api.security import Principal
+from northstar_api.services.education_student_import import (
+    StudentImportConflictError,
+    commit_student_import,
+    validate_student_import,
+)
+
+router = APIRouter(prefix="/education/students/import/lms", tags=["education"])
+DB = Annotated[AsyncSession, Depends(get_session)]
+EducationManagePrincipal = Annotated[Principal, Depends(require_permissions("education.manage"))]
+
+
+def _workspace_id(principal: Principal) -> UUID:
+    if principal.workspace_id is None:
+        raise HTTPException(status_code=403, detail="Workspace access is unavailable")
+    return principal.workspace_id
+
+
+@router.post("/preview", response_model=StudentImportPreview)
+async def preview_lms_student_import(
+    payload: LMSStudentImportPayload,
+    principal: EducationManagePrincipal,
+    session: DB,
+) -> StudentImportPreview:
+    rows = to_student_import_rows(payload)
+    preview, _ = await validate_student_import(
+        session,
+        tenant_id=principal.tenant_id,
+        workspace_id=_workspace_id(principal),
+        rows=rows,
+    )
+    return preview
+
+
+@router.post("/commit", response_model=StudentImportCommitResponse)
+async def commit_lms_student_import(
+    payload: LMSStudentImportPayload,
+    principal: EducationManagePrincipal,
+    session: DB,
+) -> StudentImportCommitResponse:
+    rows = to_student_import_rows(payload)
+    try:
+        preview, result = await commit_student_import(
+            session,
+            tenant_id=principal.tenant_id,
+            workspace_id=_workspace_id(principal),
+            rows=rows,
+        )
+        if result is None:
+            await session.rollback()
+            return StudentImportCommitResponse(committed=False, preview=preview)
+        await session.commit()
+        return StudentImportCommitResponse(committed=True, preview=preview, result=result)
+    except StudentImportConflictError as exc:
+        await session.rollback()
+        raise HTTPException(status_code=409, detail=str(exc)) from exc

@@ -1,0 +1,364 @@
+.crm-workflow-page {
+  display: grid;
+  gap: 20px;
+}
+
+.crm-workflow-page__heading-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.crm-workflow-page__heading-actions .badge svg,
+.crm-workflow-section-heading a svg,
+.crm-readiness-card a svg {
+  width: 15px;
+  height: 15px;
+}
+
+.crm-workflow-metrics {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.crm-workflow-metrics .card {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 18px;
+}
+
+.crm-workflow-metrics .card > span {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 14px;
+  background: var(--surface-muted, #f4f7fb);
+  color: var(--brand, #146cf6);
+}
+
+.crm-workflow-metrics .card svg {
+  width: 20px;
+  height: 20px;
+}
+
+.crm-workflow-metrics .card div {
+  display: grid;
+  gap: 2px;
+}
+
+.crm-workflow-metrics strong {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.crm-workflow-metrics small {
+  color: var(--text-muted, #687387);
+}
+
+.crm-workflow-readiness,
+.crm-workflow-flow,
+.crm-workflow-connections,
+.crm-workflow-statuses,
+.crm-workflow-journeys {
+  padding: 0;
+  overflow: hidden;
+}
+
+.crm-workflow-section-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px 24px;
+  border-bottom: 1px solid var(--border, #e4e8ef);
+}
+
+.crm-workflow-section-heading h3,
+.crm-workflow-section-heading p {
+  margin: 0;
+}
+
+.crm-workflow-section-heading p,
+.crm-workflow-section-heading small {
+  color: var(--text-muted, #687387);
+}
+
+.crm-workflow-section-heading p {
+  margin-top: 5px;
+}
+
+.crm-workflow-section-heading > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  font-weight: 700;
+}
+
+.crm-readiness-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  padding: 20px 24px 24px;
+}
+
+.crm-readiness-card {
+  display: grid;
+  align-content: start;
+  gap: 11px;
+  min-height: 210px;
+  padding: 17px;
+  border: 1px solid var(--border, #e4e8ef);
+  border-radius: 16px;
+  background: var(--surface, #fff);
+}
+
+.crm-readiness-card--ready {
+  border-color: color-mix(in srgb, #1b9a6c 34%, var(--border, #e4e8ef));
+}
+
+.crm-readiness-card--warning {
+  border-color: color-mix(in srgb, #d48a00 38%, var(--border, #e4e8ef));
+}
+
+.crm-readiness-card--blocked {
+  border-color: color-mix(in srgb, #cf3d4f 38%, var(--border, #e4e8ef));
+}
+
+.crm-readiness-card > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.crm-readiness-card h4,
+.crm-readiness-card p {
+  margin: 0;
+}
+
+.crm-readiness-card p,
+.crm-readiness-card small {
+  color: var(--text-muted, #687387);
+  line-height: 1.5;
+}
+
+.crm-readiness-card a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: auto;
+  font-weight: 700;
+}
+
+.crm-pipeline {
+  display: grid;
+  gap: 0;
+  padding: 8px 24px 24px;
+}
+
+.crm-pipeline-step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 24px;
+  gap: 14px;
+  align-items: start;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border, #e4e8ef);
+}
+
+.crm-pipeline-step:last-child {
+  border-bottom: 0;
+}
+
+.crm-pipeline-step__icon {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 14px;
+  background: var(--surface-muted, #f4f7fb);
+  color: var(--brand, #146cf6);
+}
+
+.crm-pipeline-step__icon svg,
+.crm-pipeline-step__arrow {
+  width: 19px;
+  height: 19px;
+}
+
+.crm-pipeline-step h4,
+.crm-pipeline-step p {
+  margin: 0;
+}
+
+.crm-pipeline-step p {
+  margin-top: 4px;
+  color: var(--text-muted, #687387);
+}
+
+.crm-pipeline-step dl {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin: 12px 0 0;
+}
+
+.crm-pipeline-step dl div {
+  display: grid;
+  gap: 3px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: var(--surface-muted, #f4f7fb);
+}
+
+.crm-pipeline-step dt {
+  color: var(--text-muted, #687387);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+
+.crm-pipeline-step dd {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.crm-pipeline-step__arrow {
+  align-self: center;
+  color: var(--text-muted, #687387);
+}
+
+.crm-workflow-table-wrap {
+  overflow-x: auto;
+}
+
+.crm-workflow-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 960px;
+}
+
+.crm-workflow-table th,
+.crm-workflow-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border, #e4e8ef);
+  text-align: left;
+  vertical-align: top;
+}
+
+.crm-workflow-table th {
+  color: var(--text-muted, #687387);
+  background: var(--surface-muted, #f7f9fc);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+
+.crm-workflow-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.crm-workflow-table td {
+  font-size: 13px;
+}
+
+.crm-workflow-table td strong,
+.crm-workflow-table td small {
+  display: block;
+}
+
+.crm-workflow-table td small {
+  margin-top: 5px;
+  color: var(--text-muted, #687387);
+  line-height: 1.35;
+}
+
+.crm-workflow-table .badge {
+  width: fit-content;
+}
+
+.crm-workflow-error {
+  color: var(--danger, #c93349) !important;
+}
+
+.crm-status-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
+  gap: 12px;
+  padding: 20px 24px 24px;
+}
+
+.crm-status-grid > div {
+  display: grid;
+  gap: 4px;
+  padding: 15px;
+  border: 1px solid var(--border, #e4e8ef);
+  border-radius: 14px;
+  background: var(--surface-muted, #f7f9fc);
+}
+
+.crm-status-grid strong {
+  font-size: 22px;
+}
+
+.crm-status-grid span {
+  color: var(--text-muted, #687387);
+  text-transform: capitalize;
+}
+
+.crm-workflow-connections .empty-state,
+.crm-workflow-statuses .empty-state,
+.crm-workflow-journeys .empty-state {
+  padding: 42px 24px;
+}
+
+@media (max-width: 1180px) {
+  .crm-workflow-metrics {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .crm-readiness-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .crm-workflow-page__heading-actions,
+  .crm-workflow-section-heading {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .crm-workflow-metrics,
+  .crm-readiness-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .crm-readiness-grid,
+  .crm-workflow-section-heading,
+  .crm-pipeline,
+  .crm-status-grid {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .crm-pipeline-step {
+    grid-template-columns: 42px minmax(0, 1fr);
+  }
+
+  .crm-pipeline-step__arrow {
+    display: none;
+  }
+
+  .crm-pipeline-step dl {
+    grid-template-columns: 1fr;
+  }
+}

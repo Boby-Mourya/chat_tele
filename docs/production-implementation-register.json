@@ -1,0 +1,748 @@
+{
+  "schema_version": 1,
+  "audit_baseline_sha": "03aa91bfed9d064e5fafcf0ea1c1d3b9a5ee5ffa",
+  "implementation_baseline_sha": "b915fd9ba5d6fc5ba279b768e48635e557cbfe3b",
+  "audit_document_sha256": "87518e98a54bd1ec5124c4914816a486e2b45e31dcf4f84903f0c11e562f9d3b",
+  "method": "Equal-weight, manually assessed progress toward the 26 package exits; not test coverage, answer accuracy, or production readiness.",
+  "previous_estimate_percent": "20.00",
+  "credit_changes": [
+    {
+      "package": "B03",
+      "from": "0.50",
+      "to": "0.60",
+      "reason": "Guarded transport and fail-closed sitemap/crawler regression tranche."
+    },
+    {
+      "package": "B19",
+      "from": "0.00",
+      "to": "0.60",
+      "reason": "Correct the stale ledger to reflect existing b915fd9 generic REST contract implementation; not newly implemented in this patch."
+    }
+  ],
+  "packages": [
+    {
+      "id": "B01",
+      "title": "Baseline and CI recovery",
+      "implementation_credit": "0.50",
+      "status": "in progress",
+      "assessment": "Inherited partial credit. Exact release checks, artifacts and enabled-process inventory remain open; current CI failures have no available diagnostic log.",
+      "exit_evidence": []
+    },
+    {
+      "id": "B02",
+      "title": "Resource authorization sweep",
+      "implementation_credit": "0.75",
+      "status": "in progress",
+      "assessment": "Inherited partial credit. Selected-agent route controls exist; complete real-role, signed-download and background-access matrix remains.",
+      "exit_evidence": []
+    },
+    {
+      "id": "B03",
+      "title": "Unified egress isolation",
+      "implementation_credit": "0.60",
+      "status": "in progress",
+      "assessment": "Local guarded-fetch/sitemap regressions added; legacy network/browser entrypoints now fail before I/O. Full network-isolated browser/worker and production egress qualification remain.",
+      "exit_evidence": []
+    },
+    {
+      "id": "B04",
+      "title": "Answer-mode correctness",
+      "implementation_credit": "0.65",
+      "status": "in progress",
+      "assessment": "Inherited partial credit. Strict abstention and audit foundations exist; claim-level arithmetic, multilingual and injection corpus remain.",
+      "exit_evidence": []
+    },
+    {
+      "id": "B05",
+      "title": "Canonical API cleanup",
+      "implementation_credit": "0.20",
+      "status": "in progress",
+      "assessment": "Inherited partial credit. Duplicate invitation route removed; complete common API/version/idempotency conventions remain.",
+      "exit_evidence": []
+    },
+    {
+      "id": "B06",
+      "title": "Upload session and quarantine",
+      "implementation_credit": "0.00",
+      "status": "planned",
+      "assessment": "Complete ownership-bound upload session, quarantine and orphan reconciliation package not implemented.",
+      "exit_evidence": []
+    },
+    {
+      "id": "B07",
+      "title": "Extraction schema/review",
+      "implementation_credit": "0.10",
+      "status": "in progress",
+      "assessment": "Existing extraction retained; full canonical inventory and independent fidelity qualification remain.",
+      "exit_evidence": []
+    },
+    {
+      "id": "B08",
+      "title": "Structural tokenizer chunker",
+      "implementation_credit": "0.40",
+      "status": "in progress",
+      "assessment": "Inherited partial credit. Heading stack and no-truncation embedding contract exist; actual tokenizer and atomic-unit coverage remain.",
+      "exit_evidence": []
+    },
+    {
+      "id": "B09",
+      "title": "Embedding profiles/generations",
+      "implementation_credit": "0.60",
+      "status": "in progress",
+      "assessment": "Inherited partial credit. Validation and snapshot foundations exist; immutable generation membership, profiles and rollback qualification remain.",
+      "exit_evidence": []
+    },
+    {
+      "id": "B10",
+      "title": "Retrieval ranking and evaluation",
+      "implementation_credit": "0.35",
+      "status": "in progress",
+      "assessment": "Inherited partial credit. Ranking signals retained; gold corpus, calibrated admission and exact/ANN qualification remain.",
+      "exit_evidence": []
+    },
+    {
+      "id": "B11",
+      "title": "Ingestion worker fencing",
+      "implementation_credit": "0.20",
+      "status": "in progress",
+      "assessment": "Inherited partial credit. Clean rollback exists. Crawl failure manifests added; leases, fencing and crash/replay matrix remain.",
+      "exit_evidence": []
+    },
+    {
+      "id": "B12",
+      "title": "Course ownership reconciliation",
+      "implementation_credit": "0.00",
+      "status": "planned",
+      "assessment": "Canonical course ownership reconciliation and historical compatibility have not been completed.",
+      "exit_evidence": []
+    },
+    {
+      "id": "B13",
+      "title": "Education workflow/content safety",
+      "implementation_credit": "0.10",
+      "status": "in progress",
+      "assessment": "Existing education controls retained; full factual-workflow audience and delayed-send qualification remain.",
+      "exit_evidence": []
+    },
+    {
+      "id": "B14",
+      "title": "Workspace settings and roles",
+      "implementation_credit": "0.25",
+      "status": "in progress",
+      "assessment": "Inherited partial credit. Masking persistence exists; full settings/roles/grants/context-switch acceptance remains.",
+      "exit_evidence": []
+    },
+    {
+      "id": "B15",
+      "title": "Brand core and design tokens",
+      "implementation_credit": "0.00",
+      "status": "planned",
+      "assessment": "Complete versioned cross-surface branding and token qualification not implemented.",
+      "exit_evidence": []
+    },
+    {
+      "id": "B16",
+      "title": "Auth/domain/email/widget brand",
+      "implementation_credit": "0.00",
+      "status": "planned",
+      "assessment": "Complete verified DNS/TLS/sender/auth/widget publication package not implemented.",
+      "exit_evidence": []
+    },
+    {
+      "id": "B17",
+      "title": "Dashboard composition",
+      "implementation_credit": "0.00",
+      "status": "planned",
+      "assessment": "Complete permission-aware widget/layout/semantic-metric package not implemented.",
+      "exit_evidence": []
+    },
+    {
+      "id": "B18",
+      "title": "Platform staff control plane",
+      "implementation_credit": "0.00",
+      "status": "planned",
+      "assessment": "Complete separate staff grants, privileged sessions and bounded support access not implemented.",
+      "exit_evidence": []
+    },
+    {
+      "id": "B19",
+      "title": "Provider capability contracts",
+      "implementation_credit": "0.60",
+      "status": "in progress",
+      "assessment": "Reassessed existing b915fd9 code: validated generic REST contracts/capabilities and no implicit upsert-to-create. This is pre-existing work, not this patch. Worker-operation migration, native/provider contracts and live qualification remain.",
+      "exit_evidence": []
+    },
+    {
+      "id": "B20",
+      "title": "Generic webhook subscriptions",
+      "implementation_credit": "0.00",
+      "status": "planned",
+      "assessment": "Generic event subscriptions, durable receipts, signing rotation, replay and catch-up package not implemented.",
+      "exit_evidence": []
+    },
+    {
+      "id": "B21",
+      "title": "Developer applications/metadata",
+      "implementation_credit": "0.00",
+      "status": "planned",
+      "assessment": "Complete scoped developer applications, service principals, metadata and SDK qualification not implemented.",
+      "exit_evidence": []
+    },
+    {
+      "id": "B22",
+      "title": "Billing/usage/lifecycle",
+      "implementation_credit": "0.00",
+      "status": "planned",
+      "assessment": "Complete reconciled usage/billing/lifecycle/recovery package not implemented.",
+      "exit_evidence": []
+    },
+    {
+      "id": "B23",
+      "title": "Common new formats",
+      "implementation_credit": "0.00",
+      "status": "planned",
+      "assessment": "New spreadsheet/presentation formats remain disabled pending complete qualification.",
+      "exit_evidence": []
+    },
+    {
+      "id": "B24",
+      "title": "Workflow/form expansion",
+      "implementation_credit": "0.15",
+      "status": "in progress",
+      "assessment": "Inherited partial credit. Rich payload/branch validation exists; durable versioned workflow/form execution remains.",
+      "exit_evidence": []
+    },
+    {
+      "id": "B25",
+      "title": "Feature-folder migration",
+      "implementation_credit": "0.35",
+      "status": "in progress",
+      "assessment": "Inherited partial credit. Knowledge modules use feature ownership and compatibility aliases; other domains remain.",
+      "exit_evidence": []
+    },
+    {
+      "id": "B26",
+      "title": "Operational qualification",
+      "implementation_credit": "0.10",
+      "status": "in progress",
+      "assessment": "Inherited partial credit. Focused local checks are not deployment, load, restore or live-provider acceptance.",
+      "exit_evidence": []
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "T01",
+      "title": "Other tenant ID",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T02",
+      "title": "Other workspace ID",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T03",
+      "title": "Hidden agent knowledge",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T04",
+      "title": "Restricted API-key download",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T05",
+      "title": "Role removed mid-request",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T06",
+      "title": "Grant revoked before queued send",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T07",
+      "title": "Cache from old workspace",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T08",
+      "title": "Source withdrawn before replay",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T09",
+      "title": "Duplicate invitation",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T10",
+      "title": "Simultaneous invitation acceptance",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T11",
+      "title": "Last administrator removal",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T12",
+      "title": "Role delegation beyond actor",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T13",
+      "title": "Forged MIME",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T14",
+      "title": "Unknown binary",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T15",
+      "title": "Expansion or pixel bomb",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T16",
+      "title": "Object promotion interrupted",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T17",
+      "title": "Encrypted or corrupt PDF",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T18",
+      "title": "Missing page",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T19",
+      "title": "Mixed scan and text",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T20",
+      "title": "Rotated or multicolumn layout",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T21",
+      "title": "Table spans and continuations",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T22",
+      "title": "Formula or negative sign",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T23",
+      "title": "Question, options and answer key",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T24",
+      "title": "Figure with uncertain values",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T25",
+      "title": "Word comments, hidden or deleted text",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T26",
+      "title": "External document dependency",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T27",
+      "title": "Missing fonts",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T28",
+      "title": "Rendered-page mismatch",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T29",
+      "title": "UTF variants",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T30",
+      "title": "Invalid encoding",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T31",
+      "title": "CJK long passage",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T32",
+      "title": "Meaningful URL query parameters",
+      "status": "partial",
+      "evidence": [
+        "backend/tests/test_web_sources.py"
+      ],
+      "remaining": "URL identity and crawl projection tested locally; complete database, retrieval and historical citation acceptance is not yet recorded."
+    },
+    {
+      "id": "T33",
+      "title": "XLSX formula/cache mismatch",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T34",
+      "title": "Hidden sheet or merged headers",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T35",
+      "title": "CSV multiline cells",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T36",
+      "title": "PPTX notes or hidden slides",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T37",
+      "title": "Replayed ingestion job",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T38",
+      "title": "Stale worker completion",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T39",
+      "title": "Provider failure mid-batch",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T40",
+      "title": "Cancellation before publication",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T41",
+      "title": "Wrong vector count or dimension",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T42",
+      "title": "NaN or zero vector",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T43",
+      "title": "Same-size different embedding model",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T44",
+      "title": "Truncated tail answer",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T45",
+      "title": "RRF consensus case",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T46",
+      "title": "Lexical-only identifier",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T47",
+      "title": "Filtered ANN underfill",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T48",
+      "title": "Small-scope exact search",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T49",
+      "title": "Swapped values",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T50",
+      "title": "Valid derived total",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T51",
+      "title": "Wrong negation",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T52",
+      "title": "Invented citation marker",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T53",
+      "title": "No approved evidence",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T54",
+      "title": "Public fallback disabled",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T55",
+      "title": "Permitted external answer",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T56",
+      "title": "Private text in public-search rewrite",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T57",
+      "title": "Course switch",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T58",
+      "title": "Enrollment expiry",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T59",
+      "title": "Withdrawn source or artifact",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T60",
+      "title": "Factual workflow response from another course",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T61",
+      "title": "Generic create-only endpoint",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T62",
+      "title": "Duplicate webhook",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T63",
+      "title": "Unknown external write outcome",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T64",
+      "title": "Failed read-back after ACK",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T65",
+      "title": "Bad or stale signature",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T66",
+      "title": "Signing-key rotation",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T67",
+      "title": "Endpoint host change",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T68",
+      "title": "Webhook replay or cursor expiry",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T69",
+      "title": "Fake security save regression",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T70",
+      "title": "Concurrent settings update",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T71",
+      "title": "Cross-tenant brand cache",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T72",
+      "title": "Failed domain/TLS/sender activation",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T73",
+      "title": "Staff without target membership",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T74",
+      "title": "Revoked staff grant",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T75",
+      "title": "Expired support session",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T76",
+      "title": "Privileged mutation audit failure",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T77",
+      "title": "Billing event duplicate or ordering",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T78",
+      "title": "Downgrade with queued jobs",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T79",
+      "title": "Backup restore after deletion",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T80",
+      "title": "Rolling app/worker migration",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T81",
+      "title": "Zero-coordinate rich send",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T82",
+      "title": "Malformed rich payload",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T83",
+      "title": "Invalid condition branch/graph",
+      "status": "not run",
+      "evidence": []
+    },
+    {
+      "id": "T84",
+      "title": "Inbox/workflow format parity",
+      "status": "not run",
+      "evidence": []
+    }
+  ],
+  "release_blockers": [
+    "No successful full application/deployment evidence for the exact candidate SHA.",
+    "Existing backend, frontend, configuration and security CI jobs report failure; logs unavailable; root cause unestablished.",
+    "Production topology gate skipped; no PostgreSQL non-owner role, broker/storage or live-provider qualification in this run.",
+    "Immutable generation lifecycle, tokenizer budgets, worker fencing and full claim/citation verification remain incomplete.",
+    "Branding/control plane, developer events, billing/lifecycle and optional-format/workflow packages remain incomplete."
+  ]
+}
